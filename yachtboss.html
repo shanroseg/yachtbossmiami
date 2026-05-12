@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Yacht Boss | Miami Charter Fleet</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#080E1C;
+  --navy2:#0D1829;
+  --orange:#FF5500;
+  --orange2:#FF7A3D;
+  --cream:#F2EDE4;
+  --cream2:#C8C0B0;
+  --blue:#0B6FBB;
+  --gold:#C9933A;
+  --card:#111827;
+  --card2:#1A2438;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--cream);font-family:'Barlow',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* NAV */
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.25rem 2.5rem;
+  background:rgba(8,14,28,0.97);
+  border-bottom:1px solid rgba(255,85,0,0.15);
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(8px);
+}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:var(--cream);text-decoration:none;}
+.logo span{color:var(--orange);}
+nav a{color:var(--cream2);font-size:.85rem;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:color .2s;}
+nav a:hover{color:var(--orange);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-cta{
+  background:var(--orange);color:#fff!important;
+  padding:.45rem 1.2rem;border-radius:2px;
+  font-weight:600;letter-spacing:1px;
+  transition:background .2s!important;
+}
+.nav-cta:hover{background:var(--orange2)!important;}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:90vh;
+  display:flex;align-items:center;
+  overflow:hidden;
+  background:var(--navy);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(11,111,187,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,85,0,0.12) 0%, transparent 60%),
+    var(--navy);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:2;padding:4rem 2.5rem;max-width:1200px;margin:0 auto;width:100%;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.8rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:1.5rem;
+  border:1px solid rgba(255,85,0,0.3);
+  padding:.35rem .8rem;border-radius:2px;
+}
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,10vw,8rem);
+  line-height:.95;letter-spacing:2px;
+  color:var(--cream);
+  margin-bottom:1.5rem;
+}
+h1 em{color:var(--orange);font-style:normal;}
+.hero-sub{
+  font-size:1.15rem;font-weight:300;
+  color:var(--cream2);max-width:520px;
+  line-height:1.7;margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--orange);color:#fff;
+  padding:.8rem 2rem;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s,transform .15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--orange2);transform:translateY(-1px);}
+.btn-outline{
+  background:transparent;color:var(--cream);
+  padding:.8rem 2rem;border-radius:2px;
+  border:1px solid rgba(242,237,228,0.3);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:border-color .2s,color .2s;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--orange);color:var(--orange);}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:4rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:2rem;flex-wrap:wrap;
+}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--orange);line-height:1;}
+.stat-lbl{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream2);margin-top:.2rem;}
+
+/* MARQUEE STRIP */
+.marquee-strip{
+  background:var(--orange);padding:.65rem 0;overflow:hidden;
+  border-top:1px solid rgba(255,255,255,0.1);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.marquee-inner{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:marquee 35s linear infinite;
+  width:max-content;
+}
+.marquee-item{
+  font-family:'Barlow Condensed',sans-serif;font-size:.85rem;
+  letter-spacing:3px;text-transform:uppercase;color:#fff;font-weight:700;
+  display:flex;align-items:center;gap:.75rem;
+}
+.marquee-item::before{content:'⚓';}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* CATEGORIES */
+.categories-section{background:var(--navy2);padding:4rem 2.5rem;}
+.section-header{max-width:1200px;margin:0 auto 2.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.section-tag{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:2px;line-height:1;}
+.section-title span{color:var(--orange);}
+.category-pills{max-width:1200px;margin:0 auto;display:flex;gap:1rem;flex-wrap:wrap;}
+.cat-pill{
+  flex:1;min-width:140px;
+  background:var(--card);border:1px solid rgba(255,255,255,0.07);
+  border-radius:4px;padding:1.5rem;cursor:pointer;
+  transition:all .2s;text-align:center;
+}
+.cat-pill:hover{border-color:var(--orange);background:var(--card2);}
+.cat-icon{font-size:1.8rem;margin-bottom:.5rem;}
+.cat-name{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream);}
+.cat-count{font-size:.75rem;color:var(--cream2);margin-top:.25rem;}
+
+/* FLEET */
+section#fleet{background:var(--navy);padding:4rem 2.5rem 5rem;}
+.filter-bar{max-width:1200px;margin:0 auto 2.5rem;display:flex;gap:.5rem;flex-wrap:wrap;}
+.filter-btn{
+  background:var(--card2);color:var(--cream2);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:.4rem 1rem;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:.85rem;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;
+}
+.filter-btn:hover,.filter-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+
+/* FLEET GRID */
+.fleet-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.5rem;}
+
+/* YACHT CARD */
+.yacht-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:4px;overflow:hidden;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  display:flex;flex-direction:column;
+}
+.yacht-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,85,0,0.4);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+}
+.yacht-card.hidden{display:none;}
+
+/* CARD IMAGE */
+.card-img{
+  height:210px;overflow:hidden;position:relative;
+  background:var(--card2);
+}
+.card-img img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .4s ease;
+}
+.yacht-card:hover .card-img img{transform:scale(1.04);}
+.card-img-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;
+  background:linear-gradient(135deg,var(--card2) 0%,#0D1F3C 100%);
+}
+.placeholder-icon{font-size:2.5rem;opacity:.4;}
+.placeholder-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream2);opacity:.5;}
+.card-tier{
+  position:absolute;top:.75rem;left:.75rem;
+  font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:2px;font-weight:700;z-index:2;
+}
+.tier-day{background:rgba(11,111,187,0.9);color:#fff;}
+.tier-luxury{background:rgba(201,147,58,0.92);color:#fff;}
+.tier-ultra{background:rgba(255,85,0,0.92);color:#fff;}
+.tier-request{background:rgba(20,20,30,0.88);color:var(--cream2);border:1px solid rgba(255,255,255,0.15);}
+
+/* CARD BODY */
+.card-body{padding:1.25rem;flex:1;display:flex;flex-direction:column;}
+.card-name{
+  font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;
+  color:var(--cream);line-height:1;margin-bottom:.25rem;
+}
+.card-type{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--cream2);margin-bottom:1rem;}
+.card-specs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.spec-badge{
+  display:flex;align-items:center;gap:.3rem;
+  font-size:.75rem;color:var(--cream2);
+  background:var(--card2);
+  padding:.22rem .55rem;border-radius:2px;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.card-price{
+  margin-top:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding-top:1rem;gap:.75rem;
+}
+.price-label{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cream2);}
+.price-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--orange);letter-spacing:1px;line-height:1;}
+.price-note{font-size:.65rem;color:var(--cream2);margin-top:.2rem;}
+.card-link{
+  flex-shrink:0;
+  background:transparent;color:var(--orange);
+  border:1px solid rgba(255,85,0,0.4);
+  padding:.4rem .9rem;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  text-decoration:none;white-space:nowrap;
+  transition:background .2s,color .2s;
+}
+.card-link:hover{background:var(--orange);color:#fff;}
+
+/* CONTACT SECTION */
+.contact-section{
+  background:linear-gradient(135deg,var(--orange) 0%,#CC3A00 100%);
+  padding:5rem 2.5rem;text-align:center;
+}
+.contact-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:3px;color:#fff;margin-bottom:.75rem;}
+.contact-section p{font-size:1.1rem;color:rgba(255,255,255,0.85);margin-bottom:2rem;font-weight:300;max-width:500px;margin-left:auto;margin-right:auto;}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-white{
+  background:#fff;color:var(--orange);
+  padding:.85rem 2.4rem;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:opacity .2s;display:inline-block;
+}
+.btn-white:hover{opacity:.9;}
+.btn-white-outline{
+  background:transparent;color:#fff;
+  border:2px solid rgba(255,255,255,0.6);
+  padding:.85rem 2.4rem;border-radius:2px;
+  font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:border-color .2s;display:inline-block;
+}
+.btn-white-outline:hover{border-color:#fff;}
+
+/* FOOTER */
+footer{
+  background:#050A14;padding:2.5rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;color:var(--cream2);}
+.footer-logo span{color:var(--orange);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:rgba(200,192,176,0.4);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-note{font-size:.72rem;color:rgba(200,192,176,0.3);letter-spacing:.5px;width:100%;text-align:center;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.04);}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  nav{padding:1rem 1.25rem;}
+  .nav-links a:not(.nav-cta){display:none;}
+  .hero-content{padding:3rem 1.25rem;}
+  section{padding:3rem 1.25rem;}
+  .fleet-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:1.5rem;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Yacht<span>Boss</span></a>
+  <div class="nav-links">
+    <a href="#fleet">Fleet</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Inquire Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">⚓ Miami Charter Fleet</div>
+    <h1>Born To<br/>Be On The<br/><em>Water.</em></h1>
+    <p class="hero-sub">From sporty day cruisers to 100'+ superyachts — Yacht Boss puts you on the finest vessels in Miami. Pick your ride and live the lifestyle.</p>
+    <div class="hero-actions">
+      <a href="#fleet" class="btn-primary">View Full Fleet</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">20+</div><div class="stat-lbl">Yachts Available</div></div>
+      <div><div class="stat-num">26'–102'</div><div class="stat-lbl">Range of Vessels</div></div>
+      <div><div class="stat-num">4 hr</div><div class="stat-lbl">Minimum Charter</div></div>
+      <div><div class="stat-num">Miami</div><div class="stat-lbl">Home Port</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <div class="marquee-item">Sea Ray 26'</div>
+    <div class="marquee-item">Regal 36'</div>
+    <div class="marquee-item">Sundancer 44'</div>
+    <div class="marquee-item">Formula 40'</div>
+    <div class="marquee-item">Avanti 40' Speedboat</div>
+    <div class="marquee-item">Catalaya 55' Flybridge</div>
+    <div class="marquee-item">Sea Daze · Sea Ray</div>
+    <div class="marquee-item">Summer Girl 50'</div>
+    <div class="marquee-item">Remedy Sport Fly</div>
+    <div class="marquee-item">Absolute 60' Disco</div>
+    <div class="marquee-item">Azimut 55' Vention</div>
+    <div class="marquee-item">Azimut 57' Thales</div>
+    <div class="marquee-item">Sliptease Sunseeker</div>
+    <div class="marquee-item">Fairline Squadron 46'</div>
+    <div class="marquee-item">Sunseeker 90'</div>
+    <div class="marquee-item">Hostage 55' Vandutch</div>
+    <div class="marquee-item">Azure 84' Azimut</div>
+    <div class="marquee-item">Playhouse 70' Sunseeker</div>
+    <div class="marquee-item">San Lorenzo 97'</div>
+    <div class="marquee-item">SWWC 94' Jacuzzi</div>
+    <div class="marquee-item">Leopard Sport 102'</div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item">Sea Ray 26'</div>
+    <div class="marquee-item">Regal 36'</div>
+    <div class="marquee-item">Sundancer 44'</div>
+    <div class="marquee-item">Formula 40'</div>
+    <div class="marquee-item">Avanti 40' Speedboat</div>
+    <div class="marquee-item">Catalaya 55' Flybridge</div>
+    <div class="marquee-item">Sea Daze · Sea Ray</div>
+    <div class="marquee-item">Summer Girl 50'</div>
+    <div class="marquee-item">Remedy Sport Fly</div>
+    <div class="marquee-item">Absolute 60' Disco</div>
+    <div class="marquee-item">Azimut 55' Vention</div>
+    <div class="marquee-item">Azimut 57' Thales</div>
+    <div class="marquee-item">Sliptease Sunseeker</div>
+    <div class="marquee-item">Fairline Squadron 46'</div>
+    <div class="marquee-item">Sunseeker 90'</div>
+    <div class="marquee-item">Hostage 55' Vandutch</div>
+    <div class="marquee-item">Azure 84' Azimut</div>
+    <div class="marquee-item">Playhouse 70' Sunseeker</div>
+    <div class="marquee-item">San Lorenzo 97'</div>
+    <div class="marquee-item">SWWC 94' Jacuzzi</div>
+    <div class="marquee-item">Leopard Sport 102'</div>
+  </div>
+</div>
+
+<!-- BROWSE BY TYPE -->
+<section class="categories-section">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">Browse By Type</div>
+      <div class="section-title">Find Your <span>Vessel</span></div>
+    </div>
+  </div>
+  <div class="category-pills">
+    <div class="cat-pill" onclick="filterFleet('all',null)">
+      <div class="cat-icon">🛥️</div><div class="cat-name">All Vessels</div><div class="cat-count">21 yachts</div>
+    </div>
+    <div class="cat-pill" onclick="filterFleet('day',null)">
+      <div class="cat-icon">☀️</div><div class="cat-name">Day Boats</div><div class="cat-count">Cruisers &amp; Sun Decks</div>
+    </div>
+    <div class="cat-pill" onclick="filterFleet('speed',null)">
+      <div class="cat-icon">⚡</div><div class="cat-name">Speedboats</div><div class="cat-count">Built for thrill</div>
+    </div>
+    <div class="cat-pill" onclick="filterFleet('flybridge',null)">
+      <div class="cat-icon">🛳️</div><div class="cat-name">Flybridge Yachts</div><div class="cat-count">Open-top luxury</div>
+    </div>
+    <div class="cat-pill" onclick="filterFleet('super',null)">
+      <div class="cat-icon">👑</div><div class="cat-name">Superyachts</div><div class="cat-count">80'+ ultras</div>
+    </div>
+    <div class="cat-pill" onclick="filterFleet('request',null)">
+      <div class="cat-icon">💎</div><div class="cat-name">Price on Request</div><div class="cat-count">Premier fleet</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET GRID -->
+<section id="fleet">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">The Full Fleet</div>
+      <div class="section-title">Choose Your <span>Ride</span></div>
+    </div>
+    <p style="color:var(--cream2);font-size:.85rem;line-height:1.6;max-width:260px;">Prices shown are for 4-hour charters. Gratuity not included. Contact us for custom durations &amp; availability.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterFleet('all',this)">All</button>
+    <button class="filter-btn" onclick="filterFleet('day',this)">Day Boats</button>
+    <button class="filter-btn" onclick="filterFleet('speed',this)">Speedboats</button>
+    <button class="filter-btn" onclick="filterFleet('flybridge',this)">Flybridge</button>
+    <button class="filter-btn" onclick="filterFleet('super',this)">Superyachts</button>
+    <button class="filter-btn" onclick="filterFleet('request',this)">Price on Request</button>
+  </div>
+
+  <div class="fleet-grid">
+
+    <!-- ═══════════════ DAY BOATS ═══════════════ -->
+
+    <!-- Sea Ray 26' -->
+    <div class="yacht-card" data-cat="day">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⛵</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Day Boat</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sea Ray 240 Sundeck</div>
+        <div class="card-type">26' · Sundeck Sport</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 26 ft</span>
+          <span class="spec-badge">☀️ Open Deck</span>
+          <span class="spec-badge">🛥️ Sea Ray</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$750</div>
+            <div class="price-note">Up to $1,000 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/26searay" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regal 36' -->
+    <div class="yacht-card" data-cat="day">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⛵</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Cruiser</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Regal</div>
+        <div class="card-type">36' · Cruiser Boat</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 36 ft</span>
+          <span class="spec-badge">🛥️ Cruiser</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$800</div>
+            <div class="price-note">Up to $1,100 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/36regal" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sundancer 44' -->
+    <div class="yacht-card" data-cat="day">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⛵</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Cruiser</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sundancer</div>
+        <div class="card-type">44' · Cruiser Boat</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 44 ft</span>
+          <span class="spec-badge">🛥️ Cruiser</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,000</div>
+            <div class="price-note">Up to $1,200 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/44sundancer" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sea Ray 50' Swayluxx -->
+    <div class="yacht-card" data-cat="day">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⛵</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Cruiser</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sea Ray Swayluxx</div>
+        <div class="card-type">50' · Cruiser Boat</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 50 ft</span>
+          <span class="spec-badge">🛥️ Sea Ray</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,000</div>
+            <div class="price-note">Up to $1,300</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/44sundancer2" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formula 40' -->
+    <div class="yacht-card" data-cat="day">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⛵</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Cruiser</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Formula</div>
+        <div class="card-type">40' · Cruiser Boat</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 40 ft</span>
+          <span class="spec-badge">🛥️ Formula</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,000</div>
+            <div class="price-note">Up to $1,300 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/40formula" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ SPEEDBOAT ═══════════════ -->
+
+    <!-- Avanti 40' -->
+    <div class="yacht-card" data-cat="speed">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">⚡</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-day">Speedboat</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Avanti</div>
+        <div class="card-type">40' · High-Performance Speedboat</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 40 ft</span>
+          <span class="spec-badge">⚡ Performance</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,000</div>
+            <div class="price-note">Up to $1,200 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://photos.google.com/avanti36" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FLYBRIDGE YACHTS ═══════════════ -->
+
+    <!-- Catalaya 55' -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Flybridge</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Catalaya</div>
+        <div class="card-type">55' · Fairline Flybridge Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 55 ft</span>
+          <span class="spec-badge">🛳️ Flybridge</span>
+          <span class="spec-badge">⭐ Fairline</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,800</div>
+            <div class="price-note">Up to $2,000 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://photos.google.com/catalaya55" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sea Daze (Sea Ray Flybridge) -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Flybridge</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sea Daze</div>
+        <div class="card-type">Sea Ray Flybridge Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">🛳️ Flybridge</span>
+          <span class="spec-badge">⭐ Sea Ray</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,500</div>
+            <div class="price-note">Up to $1,800 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/seadaze" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summer Girl 50' -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Yacht</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Summer Girl</div>
+        <div class="card-type">50' · Luxury Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 50 ft</span>
+          <span class="spec-badge">🛳️ Yacht</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,600</div>
+            <div class="price-note">Up to $1,800 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/summergirl" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remedy -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Sport Fly</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Remedy</div>
+        <div class="card-type">Cruiser Sport Fly</div>
+        <div class="card-specs">
+          <span class="spec-badge">🛳️ Sport Fly</span>
+          <span class="spec-badge">⭐ Premium</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,700</div>
+            <div class="price-note">Up to $1,900 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/remedy" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Absolute 60' Disco Yacht -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🎉</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-ultra">Disco Yacht</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Absolute</div>
+        <div class="card-type">60' · Disco Party Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 60 ft</span>
+          <span class="spec-badge">🎉 Entertainment</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$2,300</div>
+            <div class="price-note">Up to $2,500 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/absolute60" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Azimut 55' Vention -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Flybridge</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Vention</div>
+        <div class="card-type">55' · Azimut Flybridge</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 55 ft</span>
+          <span class="spec-badge">🛳️ Azimut</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,900</div>
+            <div class="price-note">Up to $2,100 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/azimut55" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Azimut 57' Thales -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Flybridge</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Thales</div>
+        <div class="card-type">57' · Azimut Flybridge</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 57 ft</span>
+          <span class="spec-badge">🛳️ Azimut</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,800</div>
+            <div class="price-note">Up to $2,000 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.rossiboats.com/57-azimut-thales" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sliptease -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-ultra">Sunseeker</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sliptease</div>
+        <div class="card-type">Sunseeker Predator Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">🛳️ Sunseeker</span>
+          <span class="spec-badge">⭐ Premium</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$3,000</div>
+            <div class="price-note">Up to $3,200 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/sliptease" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fairline Squadron 46' -->
+    <div class="yacht-card" data-cat="flybridge">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">🛳️</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-luxury">Flybridge</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Squadron</div>
+        <div class="card-type">46' · Fairline Flybridge</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 46 ft</span>
+          <span class="spec-badge">🛳️ Fairline</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$1,600</div>
+            <div class="price-note">Up to $1,800 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://photos.google.com/fairline46" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ SUPERYACHTS ═══════════════ -->
+
+    <!-- Sunseeker 90' -->
+    <div class="yacht-card" data-cat="super">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">👑</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-ultra">Superyacht</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sunseeker</div>
+        <div class="card-type">90' · Sunseeker Big Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 90 ft</span>
+          <span class="spec-badge">👑 Superyacht</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$4,000</div>
+            <div class="price-note">Up to $4,400 · +gratuity</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/sunseeker90" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SWWC 94' Jacuzzi -->
+    <div class="yacht-card" data-cat="super">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">👑</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-ultra">Jacuzzi · MBM</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">SWWC</div>
+        <div class="card-type">94' · Sunseeker · Jacuzzi · MBM</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 94 ft</span>
+          <span class="spec-badge">👥 13 guests</span>
+          <span class="spec-badge">🛁 Jacuzzi</span>
+          <span class="spec-badge">🛏️ 4 beds · Sleeps 8</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$4,850</div>
+            <div class="price-note">6 hrs $5,850 · 8 hrs $6,850</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/u/1/folders/1-MB9ZxAIP7PQ1oMGK3Lk-MRKnXeC9XE-" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leopard Sport 102' -->
+    <div class="yacht-card" data-cat="super">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">👑</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-ultra">Mega Yacht</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Leopard Sport</div>
+        <div class="card-type">102' · Sport Mega Yacht · Fontainebleau</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 102 ft</span>
+          <span class="spec-badge">👥 13 guests</span>
+          <span class="spec-badge">📍 Fontainebleau</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">4 hrs from</div>
+            <div class="price-val">$5,100</div>
+            <div class="price-note">6 hrs $6,100 · 8 hrs $7,100</div>
+          </div>
+          <a class="card-link" href="https://drive.google.com/drive/folders/1t0ah2ohUVpR76tCQosnz9yWlkmTOzFf_" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ PRICE ON REQUEST ═══════════════ -->
+
+    <!-- Hostage 55' Vandutch -->
+    <div class="yacht-card" data-cat="request">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">💎</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-request">Price on Request</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Hostage</div>
+        <div class="card-type">55' · Vandutch Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 55 ft</span>
+          <span class="spec-badge">⭐ Vandutch</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">Starting Price</div>
+            <div class="price-val" style="font-size:1.1rem;color:var(--gold);">Upon Request</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/vandutch55" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Azure 84' -->
+    <div class="yacht-card" data-cat="request">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">💎</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-request">Price on Request</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Azure</div>
+        <div class="card-type">84' · Azimut Mega Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 84 ft</span>
+          <span class="spec-badge">👑 Mega</span>
+          <span class="spec-badge">⭐ Azimut</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">Starting Price</div>
+            <div class="price-val" style="font-size:1.1rem;color:var(--gold);">Upon Request</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/azimut84" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playhouse 70' Sunseeker -->
+    <div class="yacht-card" data-cat="request">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">💎</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-request">Price on Request</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Playhouse</div>
+        <div class="card-type">70' · Sunseeker Manhattan</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 70 ft</span>
+          <span class="spec-badge">🛳️ Sunseeker</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">Starting Price</div>
+            <div class="price-val" style="font-size:1.1rem;color:var(--gold);">Upon Request</div>
+          </div>
+          <a class="card-link" href="https://www.dropbox.com/sh/playhouse70" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- San Lorenzo 97' -->
+    <div class="yacht-card" data-cat="request">
+      <div class="card-img">
+        <div class="card-img-placeholder"><div class="placeholder-icon">💎</div><div class="placeholder-label">View Photos</div></div>
+        <div class="card-tier tier-request">Price on Request · New</div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">San Lorenzo</div>
+        <div class="card-type">97' · Ultra Luxury Mega Yacht</div>
+        <div class="card-specs">
+          <span class="spec-badge">📏 97 ft</span>
+          <span class="spec-badge">✨ New</span>
+          <span class="spec-badge">👑 Ultra Luxury</span>
+        </div>
+        <div class="card-price">
+          <div>
+            <div class="price-label">Starting Price</div>
+            <div class="price-val" style="font-size:1.1rem;color:var(--gold);">Upon Request</div>
+          </div>
+          <a class="card-link" href="https://bit.ly/97SanLorenzo" target="_blank" rel="noopener">Photos →</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end fleet-grid -->
+</section>
+
+<!-- CONTACT -->
+<div id="contact" class="contact-section">
+  <h2>Ready To Set Sail?</h2>
+  <p>DM us or reach out directly to check availability. Gratuity not included in listed prices. Prices valid for 4-hour minimum charters.</p>
+  <div class="contact-btns">
+    <a class="btn-white" href="sms:+13057055050">📱 Text Us</a>
+    <a class="btn-white-outline" href="mailto:info@yachtboss.com">✉️ Email Inquiry</a>
+    <a class="btn-white-outline" href="https://instagram.com/yachtboss" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Yacht<span>Boss</span></div>
+  <div class="footer-links">
+    <a href="#fleet">Fleet</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact">Inquire</a>
+  </div>
+  <div class="footer-note">Miami Charter Fleet · All prices are for 4-hour charters · Gratuity not included · Prices subject to change · &copy; 2026 Yacht Boss</div>
+</footer>
+
+<script>
+function filterFleet(cat, btn) {
+  if (btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  document.querySelectorAll('.yacht-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  if (cat !== 'all') {
+    document.getElementById('fleet').scrollIntoView({behavior:'smooth'});
+  }
+}
+</script>
+</body>
+</html>
