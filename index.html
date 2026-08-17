@@ -219,6 +219,71 @@ footer{border-top:1px solid var(--border);padding:2.5rem 3.5rem;background:var(-
   .gallery-grid{grid-template-columns:repeat(2,1fr);}
   .gallery-grid img{height:140px;}
 }
+.hero{
+  position:relative;
+  min-height:100vh;display:flex;align-items:flex-end;
+  overflow:hidden;
+  padding:0;
+}
+
+/* SLIDESHOW */
+.hero-slides{position:absolute;inset:0;z-index:0;}
+.hero-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  opacity:0;transition:opacity 1.2s ease;
+}
+.hero-slide.active{opacity:1;}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    to bottom,
+    rgba(8,9,12,0.3) 0%,
+    rgba(8,9,12,0.1) 40%,
+    rgba(8,9,12,0.7) 75%,
+    rgba(8,9,12,0.95) 100%
+  );
+}
+
+/* BOAT LABEL */
+.hero-boat-labels{
+  position:absolute;top:2rem;right:3.5rem;z-index:3;
+  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;
+}
+.hero-boat-label{
+  font-size:.6rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(248,245,240,0);font-weight:500;
+  transition:color .5s ease;
+  font-family:'Montserrat',sans-serif;
+}
+.hero-boat-label.active{color:rgba(248,245,240,0.7);}
+
+/* DOTS */
+.hero-dots{
+  position:absolute;bottom:2rem;right:3.5rem;z-index:3;
+  display:flex;gap:.6rem;align-items:center;
+}
+.hero-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.3);border:none;cursor:pointer;
+  padding:0;transition:all .3s;
+}
+.hero-dot.active{background:var(--gold);width:24px;border-radius:3px;}
+
+/* CONTENT */
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 3.5rem 4rem;
+}
+.hero-bottom{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;
+}
+.hero-tagline{}
+.hero-eyebrow{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
+.hero-desc{font-size:.9rem;line-height:1.8;color:var(--muted2);font-weight:300;margin-bottom:2rem;max-width:480px;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
 </style>
 </head>
 <body>
@@ -235,21 +300,45 @@ footer{border-top:1px solid var(--border);padding:2.5rem 3.5rem;background:var(-
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-grid-h"></div>
-  <div class="hero-grid-v"></div>
+
+  <!-- SLIDESHOW BACKGROUND -->
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('images/135ft_superyacht_matrix/aerial-2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/55ft_flybridge_catalaya/catalaya-01.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/102ft_superyacht_leopard/leopard-01.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('images/94ft_superyacht_swwc/swwc-01.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <!-- BOAT LABELS -->
+  <div class="hero-boat-labels">
+    <span class="hero-boat-label active">135' Baglietto Matrix</span>
+    <span class="hero-boat-label">55' Catalaya Flybridge</span>
+    <span class="hero-boat-label">102' Leopard Sport</span>
+    <span class="hero-boat-label">94' SWWC Sunseeker</span>
+  </div>
+
+  <!-- SLIDE DOTS -->
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goSlide(0)"></button>
+    <button class="hero-dot" onclick="goSlide(1)"></button>
+    <button class="hero-dot" onclick="goSlide(2)"></button>
+    <button class="hero-dot" onclick="goSlide(3)"></button>
+  </div>
+
+  <!-- BOTTOM CONTENT -->
   <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Miami Charter Fleet</div>
-      <h1><em>Yacht Boss</em><br/>Miami</h1>
-      <div class="hero-btns">
-        <a href="#fleet" class="btn-gold">View the Fleet</a>
-        <a href="#contact" class="btn-ghost">Request a Quote</a>
+    <div class="hero-bottom">
+      <div class="hero-tagline">
+        <div class="hero-eyebrow">Miami Charter Fleet</div>
+        <p class="hero-desc">From 26-foot sun decks to 135-foot superyachts — every vessel is captain-crewed, provisioned, and ready.</p>
+        <div class="hero-btns">
+          <a href="#fleet" class="btn-gold">View the Fleet</a>
+          <a href="#contact" class="btn-ghost">Request a Quote</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-right">
-      <p class="hero-desc">From 26-foot sun decks to 135-foot superyachts — Yacht Boss commands Miami's most distinguished charter fleet. Every vessel is captain-crewed, provisioned, and ready.</p>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-num">21</div><div class="stat-lbl">Vessels Available</div></div>
+        <div class="stat"><div class="stat-num">68</div><div class="stat-lbl">Vessels Available</div></div>
         <div class="stat"><div class="stat-num">26'–135'</div><div class="stat-lbl">Length Range</div></div>
         <div class="stat"><div class="stat-num">4 hr</div><div class="stat-lbl">Minimum Charter</div></div>
         <div class="stat"><div class="stat-num">Miami</div><div class="stat-lbl">Home Port</div></div>
@@ -657,6 +746,25 @@ footer{border-top:1px solid var(--border);padding:2.5rem 3.5rem;background:var(-
 </div>
 
 <script>
+
+/* HERO SLIDESHOW */
+let slideIdx = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+const labels = document.querySelectorAll('.hero-boat-label');
+
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  labels[slideIdx].classList.remove('active');
+  slideIdx = n;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+  labels[slideIdx].classList.add('active');
+}
+
+setInterval(() => { goSlide((slideIdx + 1) % slides.length); }, 5000);
+
 /* NAV */
 const nav = document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
