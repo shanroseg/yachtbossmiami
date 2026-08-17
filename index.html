@@ -29,141 +29,41 @@ nav.scrolled{background:rgba(8,9,12,0.96);border-color:var(--border);padding:1.1
 .nav-cta{border:1px solid var(--gold)!important;color:var(--gold)!important;padding:.5rem 1.4rem;transition:background .2s,color .2s!important;}
 .nav-cta:hover{background:var(--gold)!important;color:var(--black)!important;}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:0 3.5rem 5.5rem;}
-.hero-grid-h{position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border);pointer-events:none;}
-.hero-grid-v{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);pointer-events:none;}
-.hero-content{position:relative;z-index:2;max-width:1300px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;}
-.hero-eyebrow{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
-.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,8vw,7rem);font-weight:300;line-height:.92;letter-spacing:-1px;color:var(--white);margin-bottom:2.5rem;}
-h1 em{font-style:italic;color:var(--gold);display:block;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-gold{background:var(--gold);color:var(--black);padding:.85rem 2.2rem;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;text-decoration:none;display:inline-block;transition:background .2s,transform .15s;}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);}
-.btn-ghost{background:transparent;color:var(--muted2);border:1px solid var(--border2);padding:.85rem 2.2rem;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;display:inline-block;transition:all .2s;}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.hero-right{display:flex;flex-direction:column;gap:2.5rem;padding-bottom:.25rem;}
-.hero-desc{font-size:.85rem;line-height:2;color:var(--muted2);font-weight:300;border-left:1px solid var(--gold);padding-left:1.5rem;}
-.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.stat{border-top:1px solid var(--border);padding-top:1.25rem;}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--white);letter-spacing:-1px;line-height:1;}
-.stat-lbl{font-size:.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:.4rem;font-weight:500;}
 
-/* MARQUEE */
-.marquee-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:.75rem 0;background:var(--deep);}
-.marquee-inner{display:flex;gap:0;white-space:nowrap;animation:marquee 55s linear infinite;width:max-content;}
-.marquee-item{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;padding:0 2.5rem;border-right:1px solid var(--border);}
-.marquee-item:last-child{border-right:none;}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* FLEET */
-.fleet-section{padding:7rem 3.5rem;background:var(--black);}
-.fleet-inner{max-width:1300px;margin:0 auto;}
-.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);gap:2rem;flex-wrap:wrap;}
-.kicker{font-size:.56rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;}
-.kicker::before{content:'';display:block;width:20px;height:1px;background:var(--gold);}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;letter-spacing:-.5px;color:var(--white);line-height:1;}
-.section-title em{font-style:italic;color:var(--gold);}
-.section-note{font-size:.7rem;line-height:1.9;color:var(--muted);font-weight:300;max-width:240px;text-align:right;}
-.filter-bar{display:flex;gap:0;margin-bottom:3rem;border:1px solid var(--border);width:100%;flex-wrap:wrap;}
-.filter-btn{background:transparent;color:var(--muted);border:none;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:.65rem 1.5rem;font-family:'Montserrat',sans-serif;font-size:.56rem;letter-spacing:3px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap;flex:1;min-width:120px;}
-.filter-btn:last-child{border-right:none;}
-.filter-btn:hover{color:var(--white);background:var(--surface);}
-.filter-btn.active{background:var(--gold);color:var(--black);}
-.fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
-
-/* CARD */
-.yacht-card{background:var(--deep);display:flex;flex-direction:column;transition:background .3s;position:relative;}
-.yacht-card:hover{background:var(--surface);}
-.yacht-card.hidden{display:none;}
-.card-img{height:210px;overflow:hidden;position:relative;background:var(--surface2);}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
-.yacht-card:hover .card-img img{transform:scale(1.04);}
-.card-img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.65rem;background:linear-gradient(155deg,var(--surface2) 0%,#080B13 100%);}
-.ph-rule{width:22px;height:1px;background:var(--border2);}
-.ph-text{font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:500;}
-.card-tier{position:absolute;top:.85rem;left:.85rem;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;padding:.28rem .65rem;border:1px solid;}
-.tier-day{border-color:rgba(255,255,255,0.2);color:rgba(248,245,240,0.7);background:rgba(8,9,12,0.72);}
-.tier-luxury{border-color:rgba(184,151,90,0.45);color:var(--gold);background:rgba(8,9,12,0.78);}
-.tier-ultra{border-color:var(--gold);color:var(--gold);background:rgba(8,9,12,0.82);}
-.tier-request{border-color:rgba(255,255,255,0.12);color:var(--muted2);background:rgba(8,9,12,0.78);}
-.card-body{padding:1.25rem 1.5rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:.75rem;}
-.card-name{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--white);line-height:1.15;}
-.card-type{font-size:.54rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:.35rem;}
-.card-specs{display:flex;gap:.4rem;flex-wrap:wrap;padding-top:.75rem;border-top:1px solid var(--border);}
-.spec-tag{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:500;border:1px solid var(--border);padding:.2rem .55rem;}
-.card-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:1rem;gap:.75rem;}
-.price-label{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;}
-.price-val{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--white);letter-spacing:-.5px;line-height:1;}
-.price-request{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:300;font-family:'Montserrat',sans-serif;}
-.price-note{font-size:.5rem;color:var(--muted);margin-top:.22rem;letter-spacing:.5px;}
-.card-link{flex-shrink:0;font-size:.52rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid rgba(184,151,90,.3);padding:.48rem 1rem;transition:all .2s;white-space:nowrap;cursor:pointer;background:none;font-family:'Montserrat',sans-serif;}
-.card-link:hover{background:var(--gold);color:var(--black);border-color:var(--gold);}
-
-/* ── MODAL ── */
-.modal-overlay{
-  display:none;position:fixed;inset:0;z-index:2000;
-  background:rgba(4,5,8,0.97);
-  overflow-y:auto;
+/* HERO SLIDESHOW */
+let slideIdx = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+const labels = document.querySelectorAll('.hero-boat-label');
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  labels[slideIdx].classList.remove('active');
+  slideIdx = n;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+  labels[slideIdx].classList.add('active');
 }
-.modal-overlay.open{display:block;}
-.modal{
-  max-width:1100px;margin:0 auto;
-  padding:5rem 3rem 4rem;
-  position:relative;
-}
-.modal-close{
-  position:fixed;top:1.75rem;right:2rem;
-  background:none;border:1px solid var(--border2);
-  color:var(--muted2);font-size:.55rem;letter-spacing:3px;
-  text-transform:uppercase;font-weight:600;font-family:'Montserrat',sans-serif;
-  padding:.55rem 1.1rem;cursor:pointer;z-index:10;
-  transition:all .2s;
-}
-.modal-close:hover{border-color:var(--gold);color:var(--gold);}
-.modal-header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
-.modal-kicker{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;}
-.modal-kicker::before{content:'';display:block;width:20px;height:1px;background:var(--gold);}
-.modal-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;letter-spacing:-1px;color:var(--white);line-height:.95;}
-.modal-title em{font-style:italic;color:var(--gold);}
-.modal-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;}
-.modal-tag{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:.25rem .65rem;}
+setInterval(function(){ goSlide((slideIdx + 1) % slides.length); }, 5000);
 
-/* MODAL LAYOUT: desc left, price right */
-.modal-info{
-  display:grid;grid-template-columns:1fr auto;gap:3rem;
-  margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);
-  align-items:start;
+/* COMING SOON */
+function comingSoon(el) {
+  const prev = el.textContent;
+  el.textContent = 'Coming Soon';
+  el.style.opacity = '0.5';
+  setTimeout(function(){ el.textContent = prev; el.style.opacity = ''; }, 2000);
 }
-.modal-desc{font-size:.85rem;line-height:2;color:var(--muted2);font-weight:300;}
-.modal-desc p{margin-bottom:1rem;}
-.modal-desc p:last-child{margin-bottom:0;}
-.modal-pricing{min-width:220px;}
-.modal-price-row{padding:1rem 0;border-bottom:1px solid var(--border);}
-.modal-price-row:first-child{padding-top:0;}
-.modal-price-label{font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;}
-.modal-price-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);letter-spacing:-.5px;line-height:1;}
-.modal-price-note{font-size:.5rem;color:var(--muted);margin-top:.2rem;}
-.modal-inquire{
-  display:block;margin-top:1.5rem;
-  background:var(--gold);color:var(--black);
-  padding:.85rem 1.5rem;text-align:center;
-  font-size:.6rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;
-  text-decoration:none;transition:background .2s;
-}
-.modal-inquire:hover{background:var(--gold2);}
 
-/* GALLERY */
-.modal-gallery-label{font-size:.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
-.modal-gallery-label::before{content:'';display:block;width:20px;height:1px;background:var(--border2);}
-.gallery-hero{width:100%;height:500px;object-fit:cover;display:block;margin-bottom:1px;}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
-.gallery-grid img{width:100%;height:180px;object-fit:cover;display:block;cursor:pointer;transition:opacity .2s;}
-.gallery-grid img:hover{opacity:.8;}
+/* BOAT IMAGE ARRAYS */
+const catalayaImgs = ["images/55ft_flybridge_catalaya/catalaya-01.jpg", "images/55ft_flybridge_catalaya/catalaya-02.jpg", "images/55ft_flybridge_catalaya/catalaya-03.jpg", "images/55ft_flybridge_catalaya/catalaya-04.jpg", "images/55ft_flybridge_catalaya/catalaya-05.jpg", "images/55ft_flybridge_catalaya/catalaya-06.jpg", "images/55ft_flybridge_catalaya/catalaya-07.jpg", "images/55ft_flybridge_catalaya/catalaya-08.jpg", "images/55ft_flybridge_catalaya/catalaya-09.jpg", "images/55ft_flybridge_catalaya/catalaya-10.jpg", "images/55ft_flybridge_catalaya/catalaya-11.jpg", "images/55ft_flybridge_catalaya/catalaya-12.jpg", "images/55ft_flybridge_catalaya/catalaya-13.jpg", "images/55ft_flybridge_catalaya/catalaya-14.jpg", "images/55ft_flybridge_catalaya/catalaya-15.jpg", "images/55ft_flybridge_catalaya/catalaya-16.jpg", "images/55ft_flybridge_catalaya/catalaya-17.jpg", "images/55ft_flybridge_catalaya/catalaya-18.jpg", "images/55ft_flybridge_catalaya/catalaya-19.jpg", "images/55ft_flybridge_catalaya/catalaya-20.jpg", "images/55ft_flybridge_catalaya/catalaya-21.jpg", "images/55ft_flybridge_catalaya/catalaya-22.jpg", "images/55ft_flybridge_catalaya/catalaya-23.jpg", "images/55ft_flybridge_catalaya/catalaya-24.jpg", "images/55ft_flybridge_catalaya/catalaya-25.jpg", "images/55ft_flybridge_catalaya/catalaya-26.jpg", "images/55ft_flybridge_catalaya/catalaya-27.jpg", "images/55ft_flybridge_catalaya/catalaya-28.jpg", "images/55ft_flybridge_catalaya/catalaya-29.jpg", "images/55ft_flybridge_catalaya/catalaya-30.jpg", "images/55ft_flybridge_catalaya/catalaya-31.jpg"];
+const summergirlImgs = ["images/50ft_yacht_summergirl/summer-girl-01.jpg", "images/50ft_yacht_summergirl/summer-girl-02.jpg", "images/50ft_yacht_summergirl/summer-girl-03.jpg", "images/50ft_yacht_summergirl/summer-girl-04.jpg", "images/50ft_yacht_summergirl/summer-girl-05.jpg", "images/50ft_yacht_summergirl/summer-girl-06.jpg", "images/50ft_yacht_summergirl/summer-girl-07.jpg", "images/50ft_yacht_summergirl/summer-girl-08.jpg"];
+const remedyImgs = ["images/remedy_sportfly_remedy/remedy-01.jpg", "images/remedy_sportfly_remedy/remedy-02.jpg", "images/remedy_sportfly_remedy/remedy-03.jpg", "images/remedy_sportfly_remedy/remedy-04.jpg", "images/remedy_sportfly_remedy/remedy-05.jpg", "images/remedy_sportfly_remedy/remedy-06.jpg", "images/remedy_sportfly_remedy/remedy-07.jpg", "images/remedy_sportfly_remedy/remedy-08.jpg"];
+const ventionImgs = ["images/55ft_flybridge_vention/vention-01.jpg", "images/55ft_flybridge_vention/vention-02.jpg", "images/55ft_flybridge_vention/vention-03.jpg", "images/55ft_flybridge_vention/vention-04.jpg", "images/55ft_flybridge_vention/vention-05.jpg", "images/55ft_flybridge_vention/vention-06.jpg", "images/55ft_flybridge_vention/vention-07.jpg", "images/55ft_flybridge_vention/vention-08.jpg"];
+const swwcImgs = ["images/94ft_superyacht_swwc/swwc-01.jpg", "images/94ft_superyacht_swwc/swwc-02.jpg", "images/94ft_superyacht_swwc/swwc-03.jpg", "images/94ft_superyacht_swwc/swwc-04.jpg", "images/94ft_superyacht_swwc/swwc-05.jpg", "images/94ft_superyacht_swwc/swwc-06.jpg", "images/94ft_superyacht_swwc/swwc-07.jpg", "images/94ft_superyacht_swwc/swwc-08.jpg"];
+const leopardImgs = ["images/102ft_superyacht_leopard/leopard-01.jpg", "images/102ft_superyacht_leopard/leopard-02.jpg", "images/102ft_superyacht_leopard/leopard-03.jpg", "images/102ft_superyacht_leopard/leopard-04.jpg", "images/102ft_superyacht_leopard/leopard-05.jpg", "images/102ft_superyacht_leopard/leopard-06.jpg", "images/102ft_superyacht_leopard/leopard-07.jpg", "images/102ft_superyacht_leopard/leopard-08.jpg"];
+const squadronImgs = ["images/46ft_flybridge_squadron/squadron-01.jpg"];
 
-
-/* ── LIGHTBOX ── */
+/* LIGHTBOX */
 let lbBoat = null, lbIdx = 0;
 const boatImgMap = {
   matrix: matrixImgs,
@@ -175,7 +75,6 @@ const boatImgMap = {
   leopard: leopardImgs,
   squadron: squadronImgs,
 };
-
 function openLightbox(boat, idx) {
   lbBoat = boat; lbIdx = idx;
   document.getElementById('lb-img').src = boatImgMap[boat][idx];
@@ -188,6 +87,59 @@ function lbNav(dir) {
   document.getElementById('lb-img').src = imgs[lbIdx];
 }
 
+/* NAV */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+/* FILTER */
+function filterFleet(cat,btn){
+  if(btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  document.querySelectorAll('.yacht-card').forEach(card=>card.classList.toggle('hidden',cat!=='all'&&card.dataset.cat!==cat));
+}
+
+/* MODAL */
+function openModal(id){
+  document.getElementById('modal-'+id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));
+  document.body.style.overflow='';
+  closeLightbox();
+}
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)closeModal();});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* LIGHTBOX */
+const matrixImgs=[
+  'images/matrix/aerial-2.jpg','images/matrix/aerial-3.jpg','images/matrix/aerial-4.jpg',
+  'images/matrix/aerial-5.jpg','images/matrix/aerial-6.jpg','images/matrix/ext-1.jpg',
+  'images/matrix/ext-2.jpg','images/matrix/ext-3.jpg','images/matrix/deck.jpg',
+  'images/matrix/salon.jpg','images/matrix/dining.jpg','images/matrix/interior-1.jpg',
+  'images/matrix/interior-2.jpg','images/matrix/interior-3.jpg','images/matrix/interior-4.jpg',
+  'images/matrix/int-5.jpg','images/matrix/int-6.jpg','images/matrix/int-7.jpg',
+  'images/matrix/int-8.jpg','images/matrix/cabin-1.jpg','images/matrix/cabin-2.jpg',
+  'images/matrix/detail-1.jpg','images/matrix/detail-2.jpg','images/matrix/detail-3.jpg',
+  'images/matrix/detail-4.jpg','images/matrix/detail-5.jpg','images/matrix/detail-6.jpg',
+  'images/matrix/detail-7.jpg','images/matrix/detail-8.jpg','images/matrix/detail-9.jpg',
+  'images/matrix/detail-10.jpg','images/matrix/detail-11.jpg','images/matrix/detail-12.jpg',
+  'images/matrix/detail-13.jpg','images/matrix/detail-14.jpg','images/matrix/detail-15.jpg',
+  'images/matrix/detail-16.jpg','images/matrix/detail-17.jpg','images/matrix/detail-18.jpg',
+  'images/matrix/detail-19.jpg','images/matrix/detail-20.jpg'
+];
+let lbIdx=0;
+function openLightbox(i){
+  lbIdx=i;
+  document.getElementById('lb-img').src=matrixImgs[i];
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+matrixImgs.length)%matrixImgs.length;
+  document.getElementById('lb-img').src=matrixImgs[lbIdx];
+}
 </script>
 </body>
 </html>
