@@ -33,7 +33,7 @@ nav.scrolled{background:rgba(8,9,12,0.96);border-color:var(--border);padding:1.1
 /* HERO SLIDESHOW */
 let slideIdx = 0;
 const slides = document.querySelectorAll('.hero-slide');
-const dots = document.querySelectorAll('.hero-dot');
+const dots   = document.querySelectorAll('.hero-dot');
 const labels = document.querySelectorAll('.hero-boat-label');
 function goSlide(n) {
   slides[slideIdx].classList.remove('active');
@@ -44,14 +44,14 @@ function goSlide(n) {
   dots[slideIdx].classList.add('active');
   labels[slideIdx].classList.add('active');
 }
-setInterval(function(){ goSlide((slideIdx + 1) % slides.length); }, 5000);
+setInterval(function(){ goSlide((slideIdx+1) % slides.length); }, 5000);
 
 /* COMING SOON */
 function comingSoon(el) {
-  const prev = el.textContent;
+  var prev = el.textContent;
   el.textContent = 'Coming Soon';
   el.style.opacity = '0.5';
-  setTimeout(function(){ el.textContent = prev; el.style.opacity = ''; }, 2000);
+  setTimeout(function(){ el.textContent = prev; el.style.opacity=''; }, 2000);
 }
 
 /* BOAT IMAGE ARRAYS */
@@ -64,8 +64,8 @@ const leopardImgs = ["images/102ft_superyacht_leopard/leopard-01.jpg", "images/1
 const squadronImgs = ["images/46ft_flybridge_squadron/squadron-01.jpg"];
 
 /* LIGHTBOX */
-let lbBoat = null, lbIdx = 0;
-const boatImgMap = {
+var lbBoat = null, lbIdx = 0;
+var boatImgMap = {
   matrix: matrixImgs,
   catalaya: catalayaImgs,
   summergirl: summergirlImgs,
@@ -82,64 +82,11 @@ function openLightbox(boat, idx) {
 }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 function lbNav(dir) {
-  const imgs = boatImgMap[lbBoat];
+  var imgs = boatImgMap[lbBoat];
   lbIdx = (lbIdx + dir + imgs.length) % imgs.length;
   document.getElementById('lb-img').src = imgs[lbIdx];
 }
 
-/* NAV */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
-
-/* FILTER */
-function filterFleet(cat,btn){
-  if(btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
-  document.querySelectorAll('.yacht-card').forEach(card=>card.classList.toggle('hidden',cat!=='all'&&card.dataset.cat!==cat));
-}
-
-/* MODAL */
-function openModal(id){
-  document.getElementById('modal-'+id).classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){
-  document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));
-  document.body.style.overflow='';
-  closeLightbox();
-}
-document.querySelectorAll('.modal-overlay').forEach(m=>{
-  m.addEventListener('click',e=>{if(e.target===m)closeModal();});
-});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-/* LIGHTBOX */
-const matrixImgs=[
-  'images/matrix/aerial-2.jpg','images/matrix/aerial-3.jpg','images/matrix/aerial-4.jpg',
-  'images/matrix/aerial-5.jpg','images/matrix/aerial-6.jpg','images/matrix/ext-1.jpg',
-  'images/matrix/ext-2.jpg','images/matrix/ext-3.jpg','images/matrix/deck.jpg',
-  'images/matrix/salon.jpg','images/matrix/dining.jpg','images/matrix/interior-1.jpg',
-  'images/matrix/interior-2.jpg','images/matrix/interior-3.jpg','images/matrix/interior-4.jpg',
-  'images/matrix/int-5.jpg','images/matrix/int-6.jpg','images/matrix/int-7.jpg',
-  'images/matrix/int-8.jpg','images/matrix/cabin-1.jpg','images/matrix/cabin-2.jpg',
-  'images/matrix/detail-1.jpg','images/matrix/detail-2.jpg','images/matrix/detail-3.jpg',
-  'images/matrix/detail-4.jpg','images/matrix/detail-5.jpg','images/matrix/detail-6.jpg',
-  'images/matrix/detail-7.jpg','images/matrix/detail-8.jpg','images/matrix/detail-9.jpg',
-  'images/matrix/detail-10.jpg','images/matrix/detail-11.jpg','images/matrix/detail-12.jpg',
-  'images/matrix/detail-13.jpg','images/matrix/detail-14.jpg','images/matrix/detail-15.jpg',
-  'images/matrix/detail-16.jpg','images/matrix/detail-17.jpg','images/matrix/detail-18.jpg',
-  'images/matrix/detail-19.jpg','images/matrix/detail-20.jpg'
-];
-let lbIdx=0;
-function openLightbox(i){
-  lbIdx=i;
-  document.getElementById('lb-img').src=matrixImgs[i];
-  document.getElementById('lightbox').classList.add('open');
-}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-function lbNav(dir){
-  lbIdx=(lbIdx+dir+matrixImgs.length)%matrixImgs.length;
-  document.getElementById('lb-img').src=matrixImgs[lbIdx];
-}
 </script>
 </body>
 </html>
