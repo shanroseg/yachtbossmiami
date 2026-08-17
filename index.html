@@ -927,16 +927,7 @@ const matrixImgs=[
   'images/matrix/detail-19.jpg','images/matrix/detail-20.jpg'
 ];
 let lbIdx=0;
-function openLightbox(i){
-  lbIdx=i;
-  document.getElementById('lb-img').src=matrixImgs[i];
-  document.getElementById('lightbox').classList.add('open');
-}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
-function lbNav(dir){
-  lbIdx=(lbIdx+dir+matrixImgs.length)%matrixImgs.length;
-  document.getElementById('lb-img').src=matrixImgs[lbIdx];
-}
+
 
 /* SLIDESHOW */
 var slideIdx=0;
