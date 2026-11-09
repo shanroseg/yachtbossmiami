@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remedy — Yacht Boss Miami</title>
+  <title>Remedy | Yacht Boss Miami</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+  <meta name="description" content="Remedy — luxury yacht charter in Miami. Book with Yacht Boss Miami.">
+  <meta property="og:title" content="Remedy | Yacht Boss Miami">
+  <meta property="og:description" content="Charter the Remedy in Miami. Book with Yacht Boss Miami.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #B8975A;
@@ -20,64 +24,62 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--black); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 400; overflow-x: hidden; word-break: break-word; }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 48px;
-      background: rgba(8,9,12,0.95);
+      background: rgba(8,9,12,0.97);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--gold); letter-spacing: 0.08em; text-decoration: none; }
-    .nav-back { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; color: #fff;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; line-height: 1;
+    }
+    .nav-back {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+    }
     .nav-back:hover { color: var(--gold); }
     .nav-back svg { width: 14px; height: 14px; }
+    .nav-fleet-link {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+    }
 
     /* HERO */
     .boat-hero {
-      position: relative;
-      height: 70vh;
-      min-height: 480px;
-      margin-top: 65px;
-      overflow: hidden;
+      position: relative; height: 70vh; min-height: 480px;
+      margin-top: 65px; overflow: hidden;
     }
-    .boat-hero-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
+    .boat-hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .boat-hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(8,9,12,0.1) 0%, rgba(8,9,12,0.7) 80%, rgba(8,9,12,1) 100%);
+      background: linear-gradient(to bottom, rgba(8,9,12,0.1) 0%, rgba(8,9,12,0.65) 75%, rgba(8,9,12,1) 100%);
     }
-    .boat-hero-info {
-      position: absolute; bottom: 0; left: 48px; right: 48px; padding-bottom: 40px;
-    }
+    .boat-hero-info { position: absolute; bottom: 0; left: 48px; right: 48px; padding-bottom: 44px; }
     .boat-category-tag {
-      display: inline-block;
-      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--gold); border: 1px solid var(--gold);
-      padding: 5px 14px; margin-bottom: 16px;
+      display: inline-block; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold); padding: 5px 14px; margin-bottom: 16px;
     }
     .boat-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 300; color: #fff; line-height: 1.0;
-      margin-bottom: 8px;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 500; color: #fff; line-height: 1.0; margin-bottom: 10px;
     }
-    .boat-subtitle {
-      font-size: 0.8rem; letter-spacing: 0.08em;
-      color: rgba(232,224,208,0.6);
-    }
+    .boat-subtitle { font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(232,224,208,0.6); }
 
     /* SPECS ROW */
     .specs-row {
       display: flex; justify-content: center;
       border-bottom: 1px solid var(--border);
-      background: var(--dark);
-      flex-wrap: wrap;
+      background: var(--dark); flex-wrap: wrap;
     }
     .spec-item {
       flex: 1; min-width: 120px; max-width: 180px;
@@ -87,7 +89,7 @@
     .spec-item:last-child { border-right: none; }
     .spec-value {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 300; color: var(--gold); line-height: 1;
+      font-size: 2rem; font-weight: 400; color: var(--gold); line-height: 1;
     }
     .spec-label {
       font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -97,181 +99,134 @@
     /* CONTENT AREA */
     .boat-content {
       max-width: 1200px; margin: 0 auto; padding: 60px 48px;
-      display: grid; grid-template-columns: 1fr 360px; gap: 60px;
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: start;
     }
 
     /* TABS */
-    .tabs { margin-bottom: 32px; }
     .tab-buttons {
       display: flex; gap: 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border); margin-bottom: 32px;
     }
     .tab-btn {
       background: none; border: none; border-bottom: 2px solid transparent;
       color: var(--muted); font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-      padding: 12px 24px; cursor: pointer; transition: all 0.2s;
-      margin-bottom: -1px;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+      padding: 12px 24px; cursor: pointer; transition: all 0.2s; margin-bottom: -1px;
     }
     .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
     .tab-btn:hover { color: var(--text); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* Description tab */
-    .desc-text {
-      font-size: 0.88rem; line-height: 1.8;
-      color: rgba(232,224,208,0.8);
-    }
+    /* Description */
+    .desc-text { font-size: 0.9rem; line-height: 1.85; color: rgba(232,224,208,0.85); }
     .desc-text p + p { margin-top: 16px; }
-    .features-list {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 10px; margin-top: 24px;
+    .features-heading {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin: 28px 0 14px; font-weight: 600;
     }
+    .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .feature-item {
       display: flex; align-items: center; gap: 10px;
-      font-size: 0.75rem; letter-spacing: 0.05em;
-      color: rgba(232,224,208,0.7);
+      font-size: 0.75rem; letter-spacing: 0.04em; font-weight: 600;
+      color: rgba(232,224,208,0.75);
     }
     .feature-item::before {
-      content: ''; display: block;
-      width: 4px; height: 4px;
+      content: ''; display: block; width: 4px; height: 4px;
       background: var(--gold); border-radius: 50%; flex-shrink: 0;
     }
 
-    /* Pricing tab */
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2px; margin-bottom: 24px;
-    }
-    .pricing-card {
-      background: var(--card-bg);
-      padding: 24px 20px; text-align: center;
-    }
+    /* Pricing */
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-bottom: 24px; }
+    .pricing-card { background: var(--card-bg); padding: 28px 20px; text-align: center; }
     .pricing-duration {
       font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 10px;
+      color: var(--muted); margin-bottom: 10px; font-weight: 600;
     }
     .pricing-prefix {
-      font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 4px;
+      font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
     }
     .pricing-amount {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 300; color: var(--gold);
+      font-size: 2.5rem; font-weight: 400; color: var(--gold); line-height: 1;
     }
-    .pricing-note {
-      font-size: 0.65rem; color: var(--muted);
-      margin-top: 20px; line-height: 1.6;
-    }
-    .pricing-por {
-      text-align: center; padding: 48px 20px;
-    }
+    .pricing-note { font-size: 0.65rem; color: var(--muted); margin-top: 20px; line-height: 1.6; }
+    .pricing-por { text-align: center; padding: 48px 20px; }
     .pricing-por .por-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; color: var(--gold); margin-bottom: 12px;
+      font-size: 2rem; color: var(--gold); margin-bottom: 12px;
     }
-    .pricing-por p {
-      font-size: 0.8rem; color: var(--muted); margin-bottom: 24px;
-    }
+    .pricing-por p { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; }
 
-    /* Availability tab */
+    /* Availability */
     .availability-section { text-align: center; padding: 32px 0; }
     .availability-section p {
-      font-size: 0.85rem; color: var(--muted);
-      line-height: 1.7; margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto;
     }
 
     /* SIDEBAR */
-    .boat-sidebar {}
     .sidebar-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 28px 24px;
-      margin-bottom: 20px;
+      background: #0D0E12; border: 1px solid var(--border);
+      padding: 28px 24px; margin-bottom: 20px;
     }
     .sidebar-card-title {
       font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 20px;
+      color: var(--gold); margin-bottom: 20px; font-weight: 600;
     }
     .sidebar-spec-row {
-      display: flex; justify-content: space-between;
-      padding: 10px 0; border-bottom: 1px solid rgba(184,151,90,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 12px;
       font-size: 0.75rem;
     }
-    .sidebar-spec-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .sidebar-spec-label { color: var(--muted); letter-spacing: 0.05em; }
-    .sidebar-spec-val { color: var(--text); font-weight: 400; }
+    .sidebar-spec-row:nth-child(even) { background: rgba(255,255,255,0.03); }
+    .sidebar-spec-label { color: var(--gold); letter-spacing: 0.06em; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; }
+    .sidebar-spec-val { color: #fff; font-weight: 500; text-align: right; }
     .btn-book {
       display: block; width: 100%; text-align: center;
-      background: var(--gold); color: var(--black);
-      border: none; padding: 16px 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      cursor: pointer; text-decoration: none;
-      transition: background 0.2s; margin-bottom: 10px;
+      background: var(--gold); color: var(--black); border: none; padding: 16px 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background 0.2s; margin-bottom: 10px;
     }
     .btn-book:hover { background: var(--gold-light); }
     .btn-inquire {
       display: block; width: 100%; text-align: center;
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border); padding: 14px 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      cursor: pointer; text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      background: transparent; color: var(--text); border: 1px solid var(--border); padding: 14px 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
     }
     .btn-inquire:hover { border-color: var(--gold); color: var(--gold); }
 
     /* GALLERY */
-    .gallery-section {
-      max-width: 1200px; margin: 0 auto; padding: 0 48px 80px;
-    }
+    .gallery-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 80px; }
     .gallery-eyebrow {
       font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 12px;
+      color: var(--gold); margin-bottom: 12px; font-weight: 600;
     }
     .gallery-heading {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 300; color: #fff;
-      margin-bottom: 28px;
+      font-size: 2rem; font-weight: 400; color: #fff; margin-bottom: 28px;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-    }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
     .gallery-grid .g-wide { grid-column: span 2; }
-    .gallery-item {
-      aspect-ratio: 4/3;
-      overflow: hidden; cursor: pointer;
-      position: relative;
-    }
-    .gallery-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+    .gallery-item { aspect-ratio: 4/3; overflow: hidden; cursor: pointer; position: relative; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .gallery-item:hover img { transform: scale(1.04); }
 
     /* LIGHTBOX */
     .lightbox {
       display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(8,9,12,0.97);
-      align-items: center; justify-content: center;
+      background: rgba(8,9,12,0.97); align-items: center; justify-content: center;
     }
     .lightbox.open { display: flex; }
-    .lightbox-img {
-      max-width: 90vw; max-height: 85vh;
-      object-fit: contain;
-    }
+    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
     .lightbox-close {
       position: absolute; top: 24px; right: 32px;
       background: none; border: none; color: var(--text);
-      font-size: 2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
-      line-height: 1;
+      font-size: 2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; line-height: 1;
     }
     .lightbox-close:hover { opacity: 1; }
     .lightbox-prev, .lightbox-next {
@@ -288,6 +243,39 @@
       font-size: 0.7rem; letter-spacing: 0.15em; color: var(--muted);
     }
 
+    /* FOOTER */
+    footer { padding: 40px 48px; border-top: 1px solid var(--border); background: var(--black); }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 32px;
+    }
+    .footer-brand .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; color: #fff;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: block; margin-bottom: 8px; text-decoration: none;
+    }
+    .footer-tagline { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+    .footer-contact { display: flex; flex-direction: column; gap: 8px; }
+    .footer-contact a {
+      font-size: 0.72rem; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 20px; align-items: center; }
+    .footer-social a {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 24px auto 0; padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-copy { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.08em; }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .boat-content { grid-template-columns: 1fr; gap: 40px; }
@@ -300,21 +288,26 @@
       nav { padding: 16px 20px; }
       .boat-hero { height: 55vh; }
       .boat-hero-info { left: 20px; right: 20px; }
-      .boat-title { font-size: 2.4rem; }
-      .specs-row { justify-content: flex-start; }
-      .spec-item { min-width: 90px; padding: 18px 12px; }
+      .boat-title { font-size: 2.6rem; }
+      .specs-row { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+      .spec-item { min-width: 90px; padding: 18px 12px; flex-shrink: 0; }
       .boat-content { padding: 40px 20px; }
       .features-list { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .gallery-section { padding: 0 20px 60px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .lightbox-prev, .lightbox-next { padding: 10px 14px; font-size: 1.2rem; }
+      footer { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
     }
     @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .tab-btn { padding: 12px 14px; font-size: 0.6rem; }
+      .boat-title { font-size: 2rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .tab-btn { padding: 12px 12px; font-size: 0.58rem; }
     }
-  </style>
+</style>
+  <meta property="og:image" content="https://shanroseg.github.io/yachtbossmiami/images/remedy_sportfly_remedy/remedy-01.jpg">
 </head>
 <body>
 
@@ -418,6 +411,7 @@
 </div>
 
 <script>
+
 // ── TABS ──
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -438,12 +432,10 @@ function openLightbox(index) {
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function updateLightbox() {
   document.getElementById('lb-img').src = galleryImages[lbIndex];
   document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + galleryImages.length;
 }
-
 document.getElementById('lb-close').addEventListener('click', () => {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
@@ -458,16 +450,15 @@ document.getElementById('lb-next').addEventListener('click', () => {
 });
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length; updateLightbox(); }
+  if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length; updateLightbox(); }
   if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % galleryImages.length; updateLightbox(); }
-  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+  if (e.key === 'Escape')     { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
 });
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === e.currentTarget) { e.currentTarget.classList.remove('open'); document.body.style.overflow = ''; }
 });
 
-// ── GALLERY BUILDER ──
-// BOAT_DATA is injected per-page below this script tag
+// ── BUILDER FUNCTIONS ──
 function buildGallery(images, folder) {
   const grid = document.getElementById('gallery-grid');
   images.forEach((file, i) => {
@@ -476,9 +467,8 @@ function buildGallery(images, folder) {
     const item = document.createElement('div');
     item.className = 'gallery-item' + (i === 0 ? ' g-wide' : '');
     const img = document.createElement('img');
-    img.src = src;
-    img.alt = 'Gallery image ' + (i + 1);
-    img.loading = 'lazy';
+    img.src = src; img.loading = 'lazy';
+    img.alt = document.querySelector('.boat-title').textContent.trim() + ' — photo ' + (i + 1);
     item.appendChild(img);
     item.addEventListener('click', () => openLightbox(i));
     grid.appendChild(item);
@@ -503,8 +493,14 @@ function buildPricing(rates, isPOR) {
 
 function buildSidebarSpecs(specs) {
   const container = document.getElementById('sidebar-specs');
-  specs.forEach(([label, val]) => {
-    if (!val) return;
+  const rows = specs.filter(([_, val]) => val && val !== '—' && val !== '' && val !== '0');
+  if (rows.length === 0) {
+    // Hide entire sidebar specs card if no data
+    const card = container.closest('.sidebar-card');
+    if (card) card.style.display = 'none';
+    return;
+  }
+  rows.forEach(([label, val]) => {
     const row = document.createElement('div');
     row.className = 'sidebar-spec-row';
     row.innerHTML = `<span class="sidebar-spec-label">${label}</span><span class="sidebar-spec-val">${val}</span>`;
@@ -514,6 +510,12 @@ function buildSidebarSpecs(specs) {
 
 function buildFeatures(features) {
   const container = document.getElementById('features-list');
+  if (!features || features.length === 0) {
+    container.style.display = 'none';
+    const h = container.previousElementSibling;
+    if (h && h.classList.contains('features-heading')) h.style.display = 'none';
+    return;
+  }
   features.forEach(f => {
     const item = document.createElement('div');
     item.className = 'feature-item';
@@ -521,6 +523,7 @@ function buildFeatures(features) {
     container.appendChild(item);
   });
 }
+
 </script>
 <script>
 buildGallery(['remedy-01.jpg', 'remedy-02.jpg', 'remedy-03.jpg', 'remedy-04.jpg', 'remedy-05.jpg', 'remedy-06.jpg', 'remedy-07.jpg', 'remedy-08.jpg'], 'remedy_sportfly_remedy');
@@ -528,5 +531,27 @@ buildFeatures(['Sport Fly Design', 'Captain & Crew', 'Fuel Included', 'Bluetooth
 buildSidebarSpecs([('Type', 'Cruisers Sport Fly'), ('Length', "50'"), ('Guests', '12'), ('Cabins', '2'), ('Baths', '2'), ('Location', 'Miami')]);
 buildPricing({'4hr': '$1,700', '6hr': '$2,100', '8hr': '$2,500', 'week': null}, false);
 </script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">Yacht Boss Miami</a>
+      <span class="footer-tagline">Miami's Premier Yacht Charter Fleet</span>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+13055550000">(305) 000-0000</a>
+      <a href="mailto:info@yachtbossmiami.com">info@yachtbossmiami.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Yacht Boss Miami. All rights reserved.</div>
+    <div class="footer-copy">Miami Beach, FL</div>
+  </div>
+</footer>
+
 </body>
 </html>
