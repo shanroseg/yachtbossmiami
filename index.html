@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yacht Boss Miami — Luxury Yacht Charters</title>
+  <title>Yacht Boss Miami | Charter Fleet</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #B8975A;
@@ -20,9 +21,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--black);
       color: var(--text);
@@ -45,12 +44,14 @@
     }
     nav.scrolled { background: rgba(8,9,12,0.97); }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--gold);
-      letter-spacing: 0.08em;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       text-decoration: none;
+      line-height: 1;
     }
     .nav-links {
       display: flex;
@@ -79,6 +80,7 @@
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
       text-decoration: none;
+      display: inline-block;
     }
     .nav-cta:hover { background: var(--gold); color: var(--black); }
     .nav-menu-btn {
@@ -98,11 +100,37 @@
       transition: transform 0.3s, opacity 0.3s;
     }
 
-    /* ── HERO ── */
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(8,9,12,0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      padding-top: 80px;
+      padding-bottom: 40px;
+      min-height: 100vh;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* ── HERO CAROUSEL ── */
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 600px;
+      height: 55vh;
+      min-height: 380px;
       overflow: hidden;
     }
     .hero-slide {
@@ -119,77 +147,41 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(8,9,12,0.3) 0%,
-        rgba(8,9,12,0.1) 40%,
-        rgba(8,9,12,0.6) 80%,
+        rgba(8,9,12,0.4) 0%,
+        rgba(8,9,12,0.15) 40%,
+        rgba(8,9,12,0.65) 85%,
         rgba(8,9,12,0.9) 100%
       );
     }
     .hero-content {
       position: absolute;
-      bottom: 15%;
-      left: 48px;
-      right: 48px;
-      max-width: 680px;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 24px;
     }
-    .hero-eyebrow {
+    .hero-tagline {
       font-size: 0.65rem;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       font-weight: 300;
-      line-height: 1.08;
-      margin-bottom: 24px;
+      line-height: 1.1;
       color: #fff;
     }
-    .hero-title em { font-style: italic; color: var(--gold-light); }
-    .hero-subtitle {
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      color: rgba(232,224,208,0.7);
-      margin-bottom: 36px;
-      max-width: 420px;
-    }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      padding: 14px 32px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-      display: inline-block;
-    }
-    .btn-primary:hover { background: var(--gold-light); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(232,224,208,0.4);
-      padding: 14px 32px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-      display: inline-block;
-    }
-    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
     .hero-dots {
       position: absolute;
-      bottom: 32px;
-      right: 48px;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       gap: 8px;
     }
@@ -206,7 +198,6 @@
     .stats-bar {
       display: flex;
       justify-content: center;
-      gap: 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
@@ -214,13 +205,13 @@
       flex: 1;
       max-width: 200px;
       text-align: center;
-      padding: 28px 20px;
+      padding: 24px 16px;
       border-right: 1px solid var(--border);
     }
     .stat-item:last-child { border-right: none; }
     .stat-number {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 300;
       color: var(--gold);
       line-height: 1;
@@ -235,7 +226,7 @@
 
     /* ── FLEET SECTION ── */
     #fleet {
-      padding: 80px 48px;
+      padding: 60px 48px 80px;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -243,20 +234,20 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 16px;
     }
     .section-eyebrow {
       font-size: 0.6rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 300;
       color: #fff;
       line-height: 1.1;
@@ -266,9 +257,14 @@
     .filter-bar {
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      white-space: nowrap;
+      padding-bottom: 4px;
     }
+    .filter-bar::-webkit-scrollbar { display: none; }
     .filter-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -280,6 +276,8 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.2s;
+      flex-shrink: 0;
+      border-radius: 2px;
     }
     .filter-btn:hover, .filter-btn.active {
       border-color: var(--gold);
@@ -287,14 +285,26 @@
       background: rgba(184,151,90,0.08);
     }
 
-    /* Loading / error states */
-    #fleet-loading {
-      text-align: center;
-      padding: 60px 20px;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
+    /* Skeleton loading */
+    .skeleton-card {
+      aspect-ratio: 4/3;
+      background: var(--card-bg);
+      overflow: hidden;
+      position: relative;
     }
+    .skeleton-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    #fleet-loading { display: none; }
     #fleet-error {
       display: none;
       text-align: center;
@@ -347,45 +357,54 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 24px 20px 20px;
+      padding: 20px 18px 16px;
     }
     .vessel-card-category {
       font-size: 0.55rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .vessel-card-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 400;
       color: #fff;
       line-height: 1.1;
       margin-bottom: 4px;
     }
     .vessel-card-specs {
-      font-size: 0.65rem;
+      font-size: 0.63rem;
       letter-spacing: 0.08em;
       color: rgba(232,224,208,0.6);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .vessel-card-price {
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--gold-light);
+      margin-bottom: 10px;
     }
+    .vessel-card-cta {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(184,151,90,0.5);
+      padding: 6px 14px;
+      transition: background 0.2s, border-color 0.2s;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .vessel-card:hover .vessel-card-cta { opacity: 1; }
     .vessel-card-no-photo {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100%;
       background: var(--card-bg);
-    }
-    .vessel-card-no-photo svg {
-      opacity: 0.15;
-      width: 48px;
-      height: 48px;
     }
 
     /* ── CONTACT ── */
@@ -421,74 +440,153 @@
       margin-right: auto;
     }
     .contact-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 14px 32px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(232,224,208,0.4);
+      padding: 14px 32px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
     /* ── FOOTER ── */
     footer {
-      padding: 32px 48px;
+      padding: 40px 48px;
       border-top: 1px solid var(--border);
+      background: var(--black);
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 32px;
     }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.06em;
+    .footer-brand .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
     }
-    .footer-copy {
+    .footer-tagline {
       font-size: 0.65rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
-
-    /* ── MOBILE MENU ── */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-      background: rgba(8,9,12,0.98);
+    .footer-contact {
+      display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 36px;
+      gap: 8px;
     }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--text);
+    .footer-contact a {
+      font-size: 0.72rem;
+      color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.06em;
       transition: color 0.2s;
     }
-    .mobile-nav a:hover { color: var(--gold); }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-social {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .footer-social a {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 24px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .footer-copy {
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
       .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { max-width: 160px; }
     }
+
     @media (max-width: 768px) {
+      /* Nav */
       nav { padding: 16px 20px; }
       .nav-links, .nav-cta { display: none; }
       .nav-menu-btn { display: flex; }
-      .hero-content { left: 20px; right: 20px; bottom: 18%; }
-      .hero-dots { right: 20px; }
+
+      /* Hero */
+      .hero { height: 40vh; min-height: 280px; }
+      .hero-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+      .hero-tagline { font-size: 0.6rem; letter-spacing: 0.2em; }
+
+      /* Stats */
       .stats-bar { flex-wrap: wrap; }
-      .stat-item { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
-      #fleet { padding: 60px 20px; }
-      .fleet-grid { grid-template-columns: 1fr; }
+      .stat-item { min-width: 50%; max-width: none; border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+
+      /* Fleet */
+      #fleet { padding: 40px 16px 60px; }
+      .fleet-grid { grid-template-columns: 1fr; gap: 2px; }
       .vessel-card { aspect-ratio: 16/10; }
-      #contact { padding: 70px 20px; }
-      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+      .vessel-card-cta { opacity: 1; }
+
+      /* Contact */
+      #contact { padding: 60px 20px; }
+      .contact-buttons { flex-direction: column; align-items: center; }
+      .contact-buttons .btn-primary,
+      .contact-buttons .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
+
+      /* Footer */
+      footer { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
     }
+
     @media (max-width: 480px) {
-      .hero-title { font-size: 2.4rem; }
-      .hero-buttons { flex-direction: column; }
-      .hero-buttons .btn-primary, .hero-buttons .btn-secondary { text-align: center; }
+      .hero-title { font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -514,21 +612,15 @@
   <a href="#contact" onclick="closeMobileNav()" style="font-size:1rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold)">Book Now</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO CAROUSEL -->
 <section class="hero" id="hero">
-  <div class="hero-slide active" id="slide-0" style="background-image:url('images/135ft_superyacht_matrix/hero.jpg')"></div>
-  <div class="hero-slide" id="slide-1" style="background-image:url('images/55ft_flybridge_catalaya/catalaya-01.jpg')"></div>
-  <div class="hero-slide" id="slide-2" style="background-image:url('images/102ft_superyacht_leopard/leopard-01.jpg')"></div>
-  <div class="hero-slide" id="slide-3" style="background-image:url('images/94ft_superyacht_swwc/swwc-01.jpg')"></div>
+  <div class="hero-slide active" style="background-image:url('images/135ft_superyacht_matrix/aerial-2.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/102ft_superyacht_leopard/leopard-01.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('images/94ft_superyacht_swwc/swwc-01.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Miami's Premier Yacht Charter Fleet</p>
-    <h1 class="hero-title">Your <em>Perfect Day</em><br>on the Water</h1>
-    <p class="hero-subtitle">From sleek day boats to 135-foot superyachts — an unmatched fleet for every occasion on Biscayne Bay.</p>
-    <div class="hero-buttons">
-      <a href="#fleet" class="btn-primary">View Fleet</a>
-      <a href="#contact" class="btn-secondary">Charter Inquiry</a>
-    </div>
+    <p class="hero-tagline">Miami's Premier Yacht Charter Fleet</p>
+    <h1 class="hero-title">Luxury On The Water</h1>
   </div>
   <div class="hero-dots" id="hero-dots"></div>
 </section>
@@ -537,7 +629,6 @@
 <div class="stats-bar">
   <div class="stat-item"><div class="stat-number" id="stat-vessels">—</div><div class="stat-label">Vessels</div></div>
   <div class="stat-item"><div class="stat-number">135'</div><div class="stat-label">Largest Yacht</div></div>
-  <div class="stat-item"><div class="stat-number">26'</div><div class="stat-label">Smallest Vessel</div></div>
   <div class="stat-item"><div class="stat-number">MIA</div><div class="stat-label">Home Port</div></div>
   <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Concierge</div></div>
 </div>
@@ -558,9 +649,9 @@
     <button class="filter-btn" data-category="Superyacht">Superyachts</button>
     <button class="filter-btn" data-category="Price on Request">Price on Request</button>
   </div>
-  <div id="fleet-loading">Loading fleet data…</div>
+  <div id="fleet-loading"></div>
   <div id="fleet-error">Unable to load fleet data. <a href="#contact" style="color:var(--gold)">Contact us</a> for availability.</div>
-  <div class="fleet-grid" id="fleet-grid" style="display:none"></div>
+  <div class="fleet-grid" id="fleet-grid"></div>
 </section>
 
 <!-- CONTACT -->
@@ -577,18 +668,29 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Yacht Boss Miami</div>
-  <div class="footer-copy">© 2025 Yacht Boss Miami. All rights reserved.</div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">Yacht Boss Miami</span>
+      <span class="footer-tagline">Miami's Premier Yacht Charter Fleet</span>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+13055550000">(305) 000-0000</a>
+      <a href="mailto:info@yachtbossmiami.com">info@yachtbossmiami.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Yacht Boss Miami. All rights reserved.</div>
+    <div class="footer-copy">Miami Beach, FL</div>
+  </div>
 </footer>
 
 <script>
-// ──────────────────────────────────────────────
-// CONFIG — update SHEET_CSV_URL with your published CSV link
-// File → Share → Publish to web → CSV → copy URL
-// ──────────────────────────────────────────────
 const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/17Yyz_dVwH149uDXZw9Jtowqq0NYcaaDus_IQp9nqKWY/pub?output=csv';
 
-// Image folder map: slug → folder name in /images/
 const IMAGE_FOLDERS = {
   'matrix':     '135ft_superyacht_matrix',
   'catalaya':   '55ft_flybridge_catalaya',
@@ -605,26 +707,23 @@ const IMAGE_FOLDERS = {
   'absolute':   '60ft_flybridge_absolute',
 };
 
-// First/second image file names per boat
 const IMAGE_FILES = {
-  'matrix':     ['aerial-2.jpg',    'aerial-3.jpg'],
-  'catalaya':   ['catalaya-01.jpg', 'catalaya-02.jpg'],
-  'summergirl': ['summer-girl-01.jpg','summer-girl-02.jpg'],
-  'remedy':     ['remedy-01.jpg',   'remedy-02.jpg'],
-  'vention':    ['vention-01.jpg',  'vention-02.jpg'],
-  'swwc':       ['swwc-01.jpg',     'swwc-02.jpg'],
-  'leopard':    ['leopard-01.jpg',  'leopard-02.jpg'],
-  'squadron':   ['squadron-01.jpg', null],
-  'ayacht':     ['ayacht-01.jpg',   'ayacht-02.jpg'],
-  'fairline50': ['fairline50-01.jpg','fairline50-02.jpg'],
-  'bearpaw':    ['bearpaw-01.jpg',  'bearpaw-02.jpg'],
-  'searay65':   ['searay65-01.jpg', 'searay65-02.jpg'],
-  'absolute':   ['absolute-01.jpg', 'absolute-02.jpg'],
+  'matrix':     ['aerial-2.jpg',       'aerial-3.jpg'],
+  'catalaya':   ['catalaya-01.jpg',    'catalaya-02.jpg'],
+  'summergirl': ['summer-girl-01.jpg', 'summer-girl-02.jpg'],
+  'remedy':     ['remedy-01.jpg',      'remedy-02.jpg'],
+  'vention':    ['vention-01.jpg',     'vention-02.jpg'],
+  'swwc':       ['swwc-01.jpg',        'swwc-02.jpg'],
+  'leopard':    ['leopard-01.jpg',     'leopard-02.jpg'],
+  'squadron':   ['squadron-01.jpg',    null],
+  'ayacht':     ['ayacht-01.jpg',      'ayacht-02.jpg'],
+  'fairline50': ['fairline50-01.jpg',  'fairline50-02.jpg'],
+  'bearpaw':    ['bearpaw-01.jpg',     'bearpaw-02.jpg'],
+  'searay65':   ['searay65-01.jpg',    'searay65-02.jpg'],
+  'absolute':   ['absolute-01.jpg',    'absolute-02.jpg'],
 };
 
-// ──────────────────────────────────────────────
-// HERO SLIDESHOW
-// ──────────────────────────────────────────────
+// ── HERO CAROUSEL ──
 const slides = document.querySelectorAll('.hero-slide');
 const dotsContainer = document.getElementById('hero-dots');
 let currentSlide = 0;
@@ -643,7 +742,6 @@ function goToSlide(n) {
   slides[currentSlide].classList.add('active');
   dotsContainer.children[currentSlide].classList.add('active');
 }
-
 setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
 
 // Nav scroll effect
@@ -659,9 +757,7 @@ function closeMobileNav() {
   document.getElementById('mobile-nav').classList.remove('open');
 }
 
-// ──────────────────────────────────────────────
-// GOOGLE SHEETS LIVE SYNC
-// ──────────────────────────────────────────────
+// ── CSV PARSER ──
 function parseCSV(text) {
   const lines = text.trim().split('\n');
   const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
@@ -681,52 +777,58 @@ function parseCSV(text) {
 }
 
 function getSlug(name) {
-  return name.toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 function formatPrice(row) {
-  const note = row['Price Note'] || '';
-  if (note.toLowerCase().includes('request') || note.toLowerCase().includes('por')) {
-    return 'Price on Request';
-  }
+  const note = (row['Price Note'] || '').toLowerCase();
+  if (note.includes('request') || note.includes('por')) return 'Price on Request';
   const rate4 = row['4hr Rate'] || '';
   if (rate4) return 'Starting at ' + rate4.replace(/^\$/, '$') + ' / 4 hrs';
   return 'Contact for Pricing';
 }
 
 function getCategory(row) {
-  // Support both sheet rows (row['Category']) and static fallback objects (row.category)
   const cat = (row['Category'] || row.category || '').trim();
   if (cat) return cat;
-  // Fallback: infer from length
   const len = parseInt(row['Length (ft)'] || row.len || '0');
   if (len < 40) return 'Day Boat';
   if (len < 55) return 'Flybridge Yacht';
-  if (len < 80) return 'Superyacht';
   return 'Superyacht';
 }
 
+function hasValue(v) {
+  return v && String(v).trim() !== '' && String(v).trim() !== '0';
+}
+
 function buildCard(row) {
-  // Support both sheet rows and static fallback objects
   const isStatic = !!row.slug;
   const name = isStatic ? row.name : (row['Vessel Name'] || '');
   const slug = isStatic ? row.slug : getSlug(row['Nickname'] || row['Vessel Name'] || name);
   const folder = IMAGE_FOLDERS[slug] || null;
   const imgs = IMAGE_FILES[slug] || null;
   const category = getCategory(row);
-  const len = isStatic ? row.len : (row['Length (ft)'] ? row['Length (ft)'] + '\'' : '');
-  const capacity = isStatic ? row.capacity : (row['Guest Capacity'] ? row['Guest Capacity'] + ' guests' : '');
-  const specs = [len, capacity].filter(Boolean).join(' · ');
+
+  // Specs — only include populated values
+  const rawLen = isStatic ? row.len : (row['Length (ft)'] ? row['Length (ft)'] + '\'' : '');
+  const rawCap = isStatic ? row.capacity : (row['Guest Capacity'] ? row['Guest Capacity'] + ' guests' : '');
+  const specsArr = [rawLen, rawCap].filter(hasValue);
+  const specs = specsArr.join(' · ');
+
   const priceNote = isStatic ? '' : (row['Price Note'] || '').toLowerCase();
-  const isPOR = isStatic ? row.price === 'Price on Request' : (priceNote.includes('request') || priceNote.includes('por'));
+  const isPOR = isStatic
+    ? row.price === 'Price on Request'
+    : (priceNote.includes('request') || priceNote.includes('por'));
   const price = isStatic ? row.price : (isPOR ? 'Price on Request' : formatPrice(row));
+
+  const bookHref = folder
+    ? `boats/${slug}.html`
+    : `mailto:info@yachtbossmiami.com?subject=Charter Inquiry: ${encodeURIComponent(name)}`;
 
   const card = document.createElement('a');
   card.className = 'vessel-card';
   card.dataset.category = category;
-  card.href = folder ? `boats/${slug}.html` : '#contact';
+  card.href = bookHref;
 
   if (folder && imgs) {
     const img1 = document.createElement('img');
@@ -735,7 +837,6 @@ function buildCard(row) {
     img1.alt = name;
     img1.loading = 'lazy';
     card.appendChild(img1);
-
     if (imgs[1]) {
       const img2 = document.createElement('img');
       img2.className = 'vessel-card-img second';
@@ -760,9 +861,22 @@ function buildCard(row) {
       <div class="vessel-card-name">${name}</div>
       ${specs ? `<div class="vessel-card-specs">${specs}</div>` : ''}
       <div class="vessel-card-price">${price}</div>
+      <span class="vessel-card-cta">View Details →</span>
     </div>`;
 
   return card;
+}
+
+// Show skeletons while loading
+function showSkeletons(count = 6) {
+  const grid = document.getElementById('fleet-grid');
+  grid.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const sk = document.createElement('div');
+    sk.className = 'skeleton-card';
+    grid.appendChild(sk);
+  }
+  grid.style.display = 'grid';
 }
 
 let allVessels = [];
@@ -773,7 +887,13 @@ function renderFleet(vessels) {
   grid.innerHTML = '';
   const filtered = activeFilter === 'all'
     ? vessels
-    : vessels.filter(r => getCategory(r) === activeFilter);
+    : vessels.filter(r => {
+        if (activeFilter === 'Price on Request') {
+          const p = (r.price || r['Price Note'] || '').toLowerCase();
+          return p.includes('request') || p.includes('por');
+        }
+        return getCategory(r) === activeFilter;
+      });
   if (!filtered.length) {
     grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px;font-size:0.8rem;letter-spacing:0.1em">No vessels found in this category.</p>';
   } else {
@@ -783,46 +903,39 @@ function renderFleet(vessels) {
 }
 
 async function loadFleet() {
+  showSkeletons();
   try {
     const res = await fetch(SHEET_CSV_URL);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
     allVessels = parseCSV(text);
     document.getElementById('stat-vessels').textContent = allVessels.length;
-    document.getElementById('fleet-loading').style.display = 'none';
     renderFleet(allVessels);
   } catch (e) {
     console.error('Fleet load error:', e);
-    document.getElementById('fleet-loading').style.display = 'none';
-    document.getElementById('fleet-error').style.display = 'block';
-    // Fallback: show static fleet from IMAGE_FOLDERS
     renderStaticFallback();
   }
 }
 
 function renderStaticFallback() {
   const staticBoats = [
-    { name: 'Matrix', slug: 'matrix', category: 'Superyacht', len: "135'", capacity: '30 guests', price: 'Starting at $7,000 / 4 hrs' },
-    { name: 'Catalaya', slug: 'catalaya', category: 'Flybridge Yacht', len: "55'", capacity: '12 guests', price: 'Starting at $1,800 / 4 hrs' },
-    { name: 'Leopard', slug: 'leopard', category: 'Superyacht', len: "102'", capacity: '13 guests', price: 'Starting at $5,100 / 4 hrs' },
-    { name: 'SWWC', slug: 'swwc', category: 'Superyacht', len: "94'", capacity: '13 guests', price: 'Starting at $4,850 / 4 hrs' },
-    { name: 'Summer Girl', slug: 'summergirl', category: 'Flybridge Yacht', len: "50'", capacity: '12 guests', price: 'Starting at $1,600 / 4 hrs' },
-    { name: 'Remedy', slug: 'remedy', category: 'Flybridge Yacht', len: "50'", capacity: '12 guests', price: 'Starting at $1,700 / 4 hrs' },
-    { name: 'Absolute', slug: 'absolute', category: 'Flybridge Yacht', len: "60'", capacity: '12 guests', price: 'Starting at $2,300 / 4 hrs' },
-    { name: 'Vention', slug: 'vention', category: 'Flybridge Yacht', len: "55'", capacity: '12 guests', price: 'Starting at $1,900 / 4 hrs' },
-    { name: 'Squadron', slug: 'squadron', category: 'Flybridge Yacht', len: "46'", capacity: '10 guests', price: 'Starting at $1,600 / 4 hrs' },
-    { name: 'A Yacht', slug: 'ayacht', category: 'Flybridge Yacht', len: "60'", capacity: '12 guests', price: 'Price on Request' },
-    { name: 'Fairline 50', slug: 'fairline50', category: 'Day Boat', len: "50'", capacity: '13 guests', price: 'Starting at $1,000 / 4 hrs' },
-    { name: 'Bearpaw', slug: 'bearpaw', category: 'Superyacht', len: "106'", capacity: '13 guests', price: 'Price on Request' },
-    { name: 'Sea Ray 65', slug: 'searay65', category: 'Flybridge Yacht', len: "65'", capacity: '13 guests', price: 'Starting at $1,200 / 4 hrs' },
+    { name: 'Matrix',      slug: 'matrix',     category: 'Superyacht',     len: "135'", capacity: '30 guests', price: 'Starting at $7,000 / 4 hrs' },
+    { name: 'Catalaya',    slug: 'catalaya',   category: 'Flybridge Yacht', len: "55'",  capacity: '12 guests', price: 'Starting at $1,800 / 4 hrs' },
+    { name: 'Leopard',     slug: 'leopard',    category: 'Superyacht',     len: "102'", capacity: '13 guests', price: 'Starting at $5,100 / 4 hrs' },
+    { name: 'SWWC',        slug: 'swwc',       category: 'Superyacht',     len: "94'",  capacity: '13 guests', price: 'Starting at $4,850 / 4 hrs' },
+    { name: 'Summer Girl', slug: 'summergirl', category: 'Flybridge Yacht', len: "50'",  capacity: '12 guests', price: 'Starting at $1,600 / 4 hrs' },
+    { name: 'Remedy',      slug: 'remedy',     category: 'Flybridge Yacht', len: "50'",  capacity: '12 guests', price: 'Starting at $1,700 / 4 hrs' },
+    { name: 'Absolute',    slug: 'absolute',   category: 'Flybridge Yacht', len: "60'",  capacity: '12 guests', price: 'Starting at $2,300 / 4 hrs' },
+    { name: 'Vention',     slug: 'vention',    category: 'Flybridge Yacht', len: "55'",  capacity: '12 guests', price: 'Starting at $1,900 / 4 hrs' },
+    { name: 'Squadron',    slug: 'squadron',   category: 'Flybridge Yacht', len: "46'",  capacity: '10 guests', price: 'Starting at $1,600 / 4 hrs' },
+    { name: 'A Yacht',     slug: 'ayacht',     category: 'Flybridge Yacht', len: "60'",  capacity: '12 guests', price: 'Price on Request' },
+    { name: 'Fairline 50', slug: 'fairline50', category: 'Day Boat',        len: "50'",  capacity: '13 guests', price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Bearpaw',     slug: 'bearpaw',    category: 'Superyacht',     len: "106'", capacity: '13 guests', price: 'Price on Request' },
+    { name: 'Sea Ray 65',  slug: 'searay65',   category: 'Flybridge Yacht', len: "65'",  capacity: '13 guests', price: 'Starting at $1,200 / 4 hrs' },
   ];
-  // Assign to allVessels so filter buttons work after fallback
   allVessels = staticBoats;
   document.getElementById('stat-vessels').textContent = staticBoats.length;
-  const grid = document.getElementById('fleet-grid');
-  grid.innerHTML = '';
-  staticBoats.forEach(b => grid.appendChild(buildCard(b)));
-  grid.style.display = 'grid';
+  renderFleet(staticBoats);
 }
 
 // Filter buttons
