@@ -401,8 +401,17 @@
       font-weight: 600;
       color: #ffffff;
       line-height: 1.05;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+    .vessel-card-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(184,151,90,0.75);
+      margin-bottom: 8px;
     }
     .vessel-card-specs {
       display: flex;
@@ -874,22 +883,28 @@ function hasValue(v) {
 }
 
 function buildCard(row) {
-  const isStatic = !!row.slug;
+  const isStatic = row.hasOwnProperty('slug'); // static boats always have a slug key (even if empty)
   const rawName = isStatic ? row.name : (row['Vessel Name'] || '');
-  const lenFt = isStatic ? (row.len ? row.len.replace("'", '') : '') : (row['Length (ft)'] || '');
+  const lenFt = isStatic ? (row.len ? String(row.len).replace("'", '') : '') : (row['Length (ft)'] || '');
+  const typeMake = isStatic ? (row.type || '') : (row['Type / Make'] || '');
   const cleanedName = cleanVesselName(rawName, lenFt);
-  const displayName = lenFt ? `${parseInt(lenFt)}' ${cleanedName}` : cleanedName;
-  const name = displayName;
-  // Slug always from raw vessel name (no Nickname column)
+
+  // Line 1: vessel name only
+  const name = cleanedName || rawName;
+  // Line 2: length + type
+  const lenNum = lenFt ? parseInt(lenFt) : null;
+  const subtitleParts = [];
+  if (lenNum) subtitleParts.push(`${lenNum}'`);
+  if (typeMake) subtitleParts.push(typeMake);
+  const subtitle = subtitleParts.join(' · ');
+
   const slug = isStatic ? row.slug : getSlug(rawName);
   const folder = IMAGE_FOLDERS[slug] || null;
   const imgs = IMAGE_FILES[slug] || null;
   const category = getCategory(row);
 
-  // Specs — only include populated values (length already in name, so just show capacity)
-  const rawLen = '';  // length now shown in name, skip from spec chips
   const rawCap = isStatic ? row.capacity : (row['Guest Capacity'] ? row['Guest Capacity'] + ' guests' : '');
-  const specsArr = [rawLen, rawCap].filter(hasValue);
+  const specsArr = [rawCap].filter(hasValue);
   const specsChips = specsArr.map(s => `<span class="spec-chip">${s}</span>`).join('');
   const specs = specsChips;
 
@@ -899,9 +914,10 @@ function buildCard(row) {
     : (priceNote.includes('request') || priceNote.includes('por'));
   const price = isStatic ? row.price : (isPOR ? 'Price on Request' : formatPrice(row));
 
+  const displayNameForHref = lenNum ? `${lenNum}' ${name}` : name;
   const bookHref = folder
     ? `boats/${slug}.html`
-    : `mailto:info@yachtbossmiami.com?subject=Charter Inquiry: ${encodeURIComponent(name)}`;
+    : `mailto:info@yachtbossmiami.com?subject=Charter Inquiry: ${encodeURIComponent(displayNameForHref)}`;
 
   const card = document.createElement('a');
   card.className = 'vessel-card';
@@ -937,6 +953,7 @@ function buildCard(row) {
     <div class="vessel-card-info">
       <div class="vessel-card-category">${category}</div>
       <div class="vessel-card-name">${name}</div>
+      ${subtitle ? `<div class="vessel-card-subtitle">${subtitle}</div>` : ''}
       ${specs ? `<div class="vessel-card-specs">${specs}</div>` : ''}
       <div class="vessel-card-price">${isPOR ? 'Price on Request' : (price ? '<span style="font-family:Montserrat,sans-serif;font-style:normal;font-size:0.6rem;font-weight:600;letter-spacing:0.14em;color:rgba(184,151,90,0.7);margin-right:5px;text-transform:uppercase;">From</span>' + price : '')}</div>
       <span class="vessel-card-cta">View Details →</span>
@@ -999,19 +1016,73 @@ async function loadFleet() {
 
 function renderStaticFallback() {
   const staticBoats = [
-    { name: 'Matrix',      slug: 'matrix',     category: 'Superyacht',     len: "135'", capacity: '30 guests', price: 'Starting at $7,000 / 4 hrs' },
-    { name: 'Catalaya',    slug: 'catalaya',   category: 'Flybridge Yacht', len: "55'",  capacity: '12 guests', price: 'Starting at $1,800 / 4 hrs' },
-    { name: 'Leopard',     slug: 'leopard',    category: 'Superyacht',     len: "102'", capacity: '13 guests', price: 'Starting at $5,100 / 4 hrs' },
-    { name: 'SWWC',        slug: 'swwc',       category: 'Superyacht',     len: "94'",  capacity: '13 guests', price: 'Starting at $4,850 / 4 hrs' },
-    { name: 'Summer Girl', slug: 'summergirl', category: 'Flybridge Yacht', len: "50'",  capacity: '12 guests', price: 'Starting at $1,600 / 4 hrs' },
-    { name: 'Remedy',      slug: 'remedy',     category: 'Flybridge Yacht', len: "50'",  capacity: '12 guests', price: 'Starting at $1,700 / 4 hrs' },
-    { name: 'Absolute',    slug: 'absolute',   category: 'Flybridge Yacht', len: "60'",  capacity: '12 guests', price: 'Starting at $2,300 / 4 hrs' },
-    { name: 'Vention',     slug: 'vention',    category: 'Flybridge Yacht', len: "55'",  capacity: '12 guests', price: 'Starting at $1,900 / 4 hrs' },
-    { name: 'Squadron',    slug: 'squadron',   category: 'Flybridge Yacht', len: "46'",  capacity: '10 guests', price: 'Starting at $1,600 / 4 hrs' },
-    { name: 'A Yacht',     slug: 'ayacht',     category: 'Flybridge Yacht', len: "60'",  capacity: '12 guests', price: 'Price on Request' },
-    { name: 'Fairline 50', slug: 'fairline50', category: 'Day Boat',        len: "50'",  capacity: '13 guests', price: 'Starting at $1,000 / 4 hrs' },
-    { name: 'Bearpaw',     slug: 'bearpaw',    category: 'Superyacht',     len: "106'", capacity: '13 guests', price: 'Price on Request' },
-    { name: 'Sea Ray 65',  slug: 'searay65',   category: 'Flybridge Yacht', len: "65'",  capacity: '13 guests', price: 'Starting at $1,200 / 4 hrs' },
+    { name: 'Matrix',                slug: 'matrix',      category: 'Superyacht',  len: '135', type: 'Baglietto',            capacity: '',           price: 'Starting at $7,000 / 4 hrs' },
+    { name: 'Sea Ray 240 Sundeck',   slug: '',            category: 'Day Boat',    len: '26',  type: 'Sea Ray',              capacity: '11 guests',  price: 'Starting at $750 / 4 hrs' },
+    { name: 'Regal',                 slug: '',            category: 'Day Boat',    len: '36',  type: 'Regal',                capacity: '',           price: 'Starting at $800 / 4 hrs' },
+    { name: 'Sundancer',             slug: '',            category: 'Day Boat',    len: '44',  type: 'Sea Ray',              capacity: '',           price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Sea Ray Swayluxx',      slug: '',            category: 'Day Boat',    len: '50',  type: 'Sea Ray',              capacity: '',           price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Formula',               slug: '',            category: 'Day Boat',    len: '40',  type: 'Formula',              capacity: '',           price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Avanti',                slug: '',            category: 'Speedboat',   len: '40',  type: 'Avanti',               capacity: '',           price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Catalaya',              slug: 'catalaya',    category: 'Flybridge',   len: '55',  type: 'Fairline',             capacity: '',           price: 'Starting at $1,800 / 4 hrs' },
+    { name: 'Sea Daze',              slug: '',            category: 'Flybridge',   len: '',    type: 'Sea Ray',              capacity: '',           price: 'Starting at $1,500 / 4 hrs' },
+    { name: 'Summer Girl',           slug: 'summergirl', category: 'Flybridge',   len: '50',  type: 'Luxury Yacht',         capacity: '',           price: 'Starting at $1,600 / 4 hrs' },
+    { name: 'Remedy',                slug: 'remedy',      category: 'Flybridge',   len: '',    type: 'Cruiser Sport Fly',    capacity: '',           price: 'Starting at $1,700 / 4 hrs' },
+    { name: 'Absolute',              slug: 'absolute',    category: 'Flybridge',   len: '60',  type: 'Disco / Entertainment',capacity: '',           price: 'Starting at $2,300 / 4 hrs' },
+    { name: 'Vention',               slug: 'vention',     category: 'Flybridge',   len: '55',  type: 'Azimut',               capacity: '',           price: 'Starting at $1,900 / 4 hrs' },
+    { name: 'Thales',                slug: 'thales',      category: 'Flybridge',   len: '57',  type: 'Azimut',               capacity: '',           price: 'Starting at $1,800 / 4 hrs' },
+    { name: 'Sliptease',             slug: '',            category: 'Flybridge',   len: '',    type: 'Sunseeker Predator',   capacity: '',           price: 'Starting at $3,000 / 4 hrs' },
+    { name: 'Squadron',              slug: 'squadron',    category: 'Flybridge',   len: '46',  type: 'Fairline',             capacity: '',           price: 'Starting at $1,600 / 4 hrs' },
+    { name: 'Sunseeker',             slug: '',            category: 'Superyacht',  len: '90',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $4,000 / 4 hrs' },
+    { name: 'SWWC',                  slug: 'swwc',        category: 'Superyacht',  len: '94',  type: 'Sunseeker',            capacity: '13 guests',  price: 'Starting at $4,850 / 4 hrs' },
+    { name: 'Leopard Sport',         slug: 'leopard',     category: 'Superyacht',  len: '102', type: 'Leopard',              capacity: '13 guests',  price: 'Starting at $5,100 / 4 hrs' },
+    { name: 'Hostage',               slug: '',            category: 'Price on Request', len: '55', type: 'Vandutch',         capacity: '',           price: 'Price on Request' },
+    { name: 'Azure',                 slug: '',            category: 'Price on Request', len: '84', type: 'Azimut',           capacity: '',           price: 'Price on Request' },
+    { name: 'Playhouse',             slug: '',            category: 'Price on Request', len: '70', type: 'Sunseeker Manhattan', capacity: '',        price: 'Price on Request' },
+    { name: 'San Lorenzo',           slug: '',            category: 'Price on Request', len: '97', type: 'San Lorenzo',      capacity: '',           price: 'Price on Request' },
+    { name: 'Azimut Fly',            slug: '',            category: 'Superyacht',  len: '105', type: 'Azimut',               capacity: '',           price: 'Starting at $6,000 / 4 hrs' },
+    { name: 'Sunseeker 28M',         slug: '',            category: 'Superyacht',  len: '96',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $5,500 / 4 hrs' },
+    { name: 'Princess',              slug: '',            category: 'Superyacht',  len: '88',  type: 'Princess',             capacity: '',           price: 'Starting at $4,000 / 4 hrs' },
+    { name: 'Sunseeker',             slug: '',            category: 'Superyacht',  len: '80',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $3,600 / 4 hrs' },
+    { name: 'Sunseeker',             slug: '',            category: 'Superyacht',  len: '76',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $4,400 / 4 hrs' },
+    { name: 'Azimut S7',             slug: '',            category: 'Flybridge',   len: '72',  type: 'Azimut',               capacity: '',           price: 'Starting at $4,200 / 4 hrs' },
+    { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '65',  type: 'Azimut',               capacity: '',           price: 'Starting at $1,900 / 4 hrs' },
+    { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '64',  type: 'Azimut',               capacity: '',           price: 'Starting at $3,100 / 4 hrs' },
+    { name: 'Galeon Fly',            slug: '',            category: 'Flybridge',   len: '53',  type: 'Galeon',               capacity: '',           price: 'Starting at $2,800 / 4 hrs' },
+    { name: 'Wally',                 slug: '',            category: 'Price on Request', len: '85', type: 'Wally',            capacity: '',           price: 'Price on Request' },
+    { name: 'Ferretti',              slug: '',            category: 'Superyacht',  len: '80',  type: 'Ferretti',             capacity: '',           price: 'Starting at $5,300 / 4 hrs' },
+    { name: 'Money Waves',           slug: 'moneywaves',  category: 'Flybridge',   len: '68',  type: 'Motor Yacht',          capacity: '13 guests',  price: 'Starting at $1,900 / 4 hrs' },
+    { name: 'A Yacht',               slug: 'ayacht',      category: 'Flybridge',   len: '60',  type: 'Motor Yacht',          capacity: '',           price: 'Price on Request' },
+    { name: 'Fairline',              slug: 'fairline50',  category: 'Day Boat',    len: '50',  type: 'Fairline',             capacity: '13 guests',  price: 'Starting at $1,000 / 4 hrs' },
+    { name: 'Bearpaw',               slug: 'bearpaw',     category: 'Superyacht',  len: '106', type: 'Superyacht',           capacity: '',           price: 'Price on Request' },
+    { name: 'Allegra',               slug: '',            category: 'Price on Request', len: '', type: '',                   capacity: '',           price: 'Price on Request' },
+    { name: 'Back To The Future',    slug: '',            category: 'Day Boat',    len: '45',  type: 'Silverton',            capacity: '',           price: 'Starting at $1,300 / 4 hrs' },
+    { name: 'Crownline',             slug: '',            category: 'Day Boat',    len: '26',  type: 'Crownline',            capacity: '',           price: 'Price on Request' },
+    { name: 'Sea Ray Outrage',       slug: '',            category: 'Flybridge',   len: '70',  type: 'Sea Ray',              capacity: '',           price: 'Price on Request' },
+    { name: 'Stamos Bien',           slug: '',            category: '',            len: '',    type: '',                     capacity: '',           price: 'Price on Request' },
+    { name: 'Churri',                slug: 'churri',      category: 'Superyacht',  len: '90',  type: 'Leopard',              capacity: '',           price: 'Starting at $3,500 / 4 hrs' },
+    { name: 'Sea Ray',               slug: 'searay65',    category: 'Flybridge',   len: '65',  type: 'Sea Ray',              capacity: '',           price: 'Starting at $1,200 / 4 hrs' },
+    { name: 'Sunseeker',             slug: '',            category: 'Superyacht',  len: '75',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $1,800 / 4 hrs' },
+    { name: 'Bayliner',              slug: '',            category: 'Day Boat',    len: '26',  type: 'Bayliner',             capacity: '11 guests',  price: 'Starting at $540 / 4 hrs' },
+    { name: 'Hurricane',             slug: '',            category: 'Day Boat',    len: '26',  type: 'Hurricane',            capacity: '11 guests',  price: 'Starting at $480 / 4 hrs' },
+    { name: 'Wellcraft',             slug: '',            category: 'Day Boat',    len: '30',  type: 'Wellcraft',            capacity: '12 guests',  price: 'Starting at $560 / 4 hrs' },
+    { name: 'Monterey White',        slug: '',            category: 'Day Boat',    len: '37',  type: 'Monterey',             capacity: '13 guests',  price: 'Starting at $580 / 4 hrs' },
+    { name: 'Monterey Blue',         slug: '',            category: 'Day Boat',    len: '37',  type: 'Monterey',             capacity: '13 guests',  price: 'Starting at $580 / 4 hrs' },
+    { name: 'Cruiser',               slug: '',            category: 'Day Boat',    len: '37',  type: 'Cruiser',              capacity: '13 guests',  price: 'Starting at $580 / 4 hrs' },
+    { name: 'Sundancer',             slug: '',            category: 'Day Boat',    len: '37',  type: 'Sea Ray Sundancer',    capacity: '13 guests',  price: 'Starting at $640 / 4 hrs' },
+    { name: 'Regal',                 slug: '',            category: 'Flybridge',   len: '42',  type: 'Regal',                capacity: '13 guests',  price: 'Starting at $790 / 4 hrs' },
+    { name: 'Doral Hawaii',          slug: '',            category: 'Day Boat',    len: '42',  type: 'Doral',                capacity: '13 guests',  price: 'Starting at $745 / 4 hrs' },
+    { name: 'Sundancer 2',           slug: '',            category: 'Flybridge',   len: '44',  type: 'Sea Ray Sundancer',    capacity: '13 guests',  price: 'Starting at $720 / 4 hrs' },
+    { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '45',  type: 'Azimut',               capacity: '13 guests',  price: 'Starting at $1,170 / 4 hrs' },
+    { name: 'Maxum',                 slug: '',            category: 'Flybridge',   len: '46',  type: 'Maxum',                capacity: '13 guests',  price: 'Starting at $803 / 4 hrs' },
+    { name: 'Cranchi',               slug: '',            category: 'Flybridge',   len: '48',  type: 'Cranchi',              capacity: '13 guests',  price: 'Starting at $765 / 4 hrs' },
+    { name: 'Silverton Flybridge',   slug: '',            category: 'Flybridge',   len: '48',  type: 'Silverton',            capacity: '13 guests',  price: 'Starting at $875 / 4 hrs' },
+    { name: 'Silverton Sportbridge', slug: '',            category: 'Flybridge',   len: '48',  type: 'Silverton',            capacity: '13 guests',  price: 'Starting at $833 / 4 hrs' },
+    { name: 'Sunseeker Manhattan',   slug: '',            category: 'Flybridge',   len: '50',  type: 'Sunseeker',            capacity: '13 guests',  price: 'Starting at $833 / 4 hrs' },
+    { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '53',  type: 'Azimut',               capacity: '13 guests',  price: 'Starting at $1,160 / 4 hrs' },
+    { name: 'Sunseeker Predator',    slug: '',            category: 'Flybridge',   len: '60',  type: 'Sunseeker Predator',   capacity: '13 guests',  price: 'Starting at $1,500 / 4 hrs' },
+    { name: 'Viking Flybridge',      slug: '',            category: 'Flybridge',   len: '65',  type: 'Viking',               capacity: '13 guests',  price: 'Starting at $1,290 / 4 hrs' },
+    { name: 'Sunseeker Predator',    slug: '',            category: 'Superyacht',  len: '82',  type: 'Sunseeker Predator',   capacity: '13 guests',  price: 'Starting at $2,350 / 4 hrs' },
+    { name: 'Maiora',                slug: '',            category: 'Superyacht',  len: '110', type: 'Maiora',               capacity: '13 guests',  price: 'Starting at $3,500 / 4 hrs' },
   ];
   allVessels = staticBoats;
   document.getElementById('stat-vessels').textContent = staticBoats.length;
