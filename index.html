@@ -835,9 +835,29 @@ function getSlug(name) {
 function formatPrice(row) {
   const note = (row['Price Note'] || '').toLowerCase();
   if (note.includes('request') || note.includes('por')) return 'Price on Request';
-  const rate4 = row['4hr Rate'] || '';
+  // Sheet uses "4 hr Rate" (with space)
+  const rate4 = row['4 hr Rate'] || row['4hr Rate'] || row['4-Hour Rate'] || '';
   if (rate4) return 'Starting at ' + rate4.replace(/^\$/, '$') + ' / 4 hrs';
   return 'Contact for Pricing';
+}
+
+// Strip length from name if it matches the vessel's actual length ft value
+// e.g. "Sea Ray 65" with len=65 → "Sea Ray", but "Formula 350" with len=38 → "Formula 350" (no match)
+function cleanVesselName(name, lenFt) {
+  if (!lenFt) return name;
+  const len = parseInt(lenFt);
+  if (!len) return name;
+  // Remove trailing "NNft", "NN ft", "NN'", or bare number that equals length
+  // Only strip if the number matches the actual length
+  const stripped = name
+    .replace(new RegExp(`\\b${len}\\s*ft\\b`, 'gi'), '')
+    .replace(new RegExp(`\\b${len}'`, 'g'), '')
+    .trim();
+  // If the remaining name is non-empty and the number was a suffix/standalone, use stripped
+  // But only if the original name contained that number as a standalone token
+  const hasMatch = new RegExp(`\\b${len}\\b`).test(name);
+  if (hasMatch && stripped.length > 0) return stripped.replace(/\s+/g, ' ').trim();
+  return name;
 }
 
 function getCategory(row) {
@@ -855,14 +875,19 @@ function hasValue(v) {
 
 function buildCard(row) {
   const isStatic = !!row.slug;
-  const name = isStatic ? row.name : (row['Vessel Name'] || '');
-  const slug = isStatic ? row.slug : getSlug(row['Nickname'] || row['Vessel Name'] || name);
+  const rawName = isStatic ? row.name : (row['Vessel Name'] || '');
+  const lenFt = isStatic ? (row.len ? row.len.replace("'", '') : '') : (row['Length (ft)'] || '');
+  const cleanedName = cleanVesselName(rawName, lenFt);
+  const displayName = lenFt ? `${parseInt(lenFt)}' ${cleanedName}` : cleanedName;
+  const name = displayName;
+  // Slug always from raw vessel name (no Nickname column)
+  const slug = isStatic ? row.slug : getSlug(rawName);
   const folder = IMAGE_FOLDERS[slug] || null;
   const imgs = IMAGE_FILES[slug] || null;
   const category = getCategory(row);
 
-  // Specs — only include populated values
-  const rawLen = isStatic ? row.len : (row['Length (ft)'] ? row['Length (ft)'] + '\'' : '');
+  // Specs — only include populated values (length already in name, so just show capacity)
+  const rawLen = '';  // length now shown in name, skip from spec chips
   const rawCap = isStatic ? row.capacity : (row['Guest Capacity'] ? row['Guest Capacity'] + ' guests' : '');
   const specsArr = [rawLen, rawCap].filter(hasValue);
   const specsChips = specsArr.map(s => `<span class="spec-chip">${s}</span>`).join('');
@@ -942,8 +967,8 @@ function renderFleet(vessels) {
     ? vessels
     : vessels.filter(r => {
         if (activeFilter === 'Price on Request') {
-          const p = (r.price || r['Price Note'] || '').toLowerCase();
-          return p.includes('request') || p.includes('por');
+          const p = (r.price || r['Price Note'] || r['4 hr Rate'] || '').toLowerCase();
+          return p.includes('request') || p.includes('por') || (!r['4 hr Rate'] && !r['4hr Rate'] && !r.price);
         }
         return getCategory(r) === activeFilter;
       });
@@ -958,10 +983,12 @@ function renderFleet(vessels) {
 async function loadFleet() {
   showSkeletons();
   try {
-    const res = await fetch(SHEET_CSV_URL);
+    const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
-    allVessels = parseCSV(text);
+    const parsed = parseCSV(text);
+    // Filter to rows with a Vessel Name — all other fields optional
+    allVessels = parsed.filter(r => (r['Vessel Name'] || '').trim().length > 0);
     document.getElementById('stat-vessels').textContent = allVessels.length;
     renderFleet(allVessels);
   } catch (e) {
