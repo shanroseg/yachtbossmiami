@@ -326,9 +326,15 @@
       overflow: hidden;
       cursor: pointer;
       aspect-ratio: 4/3;
+      min-height: 320px;
       background: var(--card-bg);
       text-decoration: none;
       display: block;
+      border: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .vessel-card:hover {
+      border-color: rgba(184,151,90,0.6);
     }
     .vessel-card-img {
       position: absolute;
@@ -336,7 +342,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease, opacity 0.5s ease;
+      transition: transform 0.7s ease, opacity 0.5s ease;
     }
     .vessel-card-img.second {
       opacity: 0;
@@ -344,61 +350,106 @@
     }
     .vessel-card:hover .vessel-card-img.first { opacity: 0; }
     .vessel-card:hover .vessel-card-img.second { opacity: 1; }
-    .vessel-card:hover .vessel-card-img.first-only { transform: scale(1.04); }
+    .vessel-card:hover .vessel-card-img.first-only { transform: scale(1.05); }
     .vessel-card-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(8,9,12,0.9) 0%, rgba(8,9,12,0.3) 50%, transparent 100%);
-      transition: opacity 0.3s;
+      background: linear-gradient(
+        to top,
+        rgba(8,9,12,0.92) 0%,
+        rgba(8,9,12,0.55) 35%,
+        rgba(8,9,12,0.15) 65%,
+        transparent 100%
+      );
+      transition: background 0.4s ease;
     }
-    .vessel-card:hover .vessel-card-overlay { opacity: 0.85; }
+    .vessel-card:hover .vessel-card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(8,9,12,0.97) 0%,
+        rgba(8,9,12,0.65) 40%,
+        rgba(8,9,12,0.25) 70%,
+        transparent 100%
+      );
+    }
     .vessel-card-info {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px 18px 16px;
+      padding: 24px 20px 18px;
     }
     .vessel-card-category {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.55rem;
+      font-weight: 700;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 5px;
+      background: rgba(8,9,12,0.65);
+      border: 1px solid rgba(184,151,90,0.3);
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
     .vessel-card-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 4px;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
     .vessel-card-specs {
-      font-size: 0.63rem;
-      letter-spacing: 0.08em;
-      color: rgba(232,224,208,0.6);
-      margin-bottom: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .vessel-card-specs .spec-chip {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(232,224,208,0.9);
+      background: rgba(8,9,12,0.7);
+      border: 1px solid rgba(184,151,90,0.3);
+      padding: 4px 10px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
     .vessel-card-price {
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--gold-light);
-      margin-bottom: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
     }
     .vessel-card-cta {
       display: inline-block;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
       border: 1px solid rgba(184,151,90,0.5);
-      padding: 6px 14px;
-      transition: background 0.2s, border-color 0.2s;
+      padding: 7px 16px;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.3s, background 0.2s, border-color 0.2s;
     }
-    .vessel-card:hover .vessel-card-cta { opacity: 1; }
+    .vessel-card:hover .vessel-card-cta {
+      opacity: 1;
+      background: rgba(184,151,90,0.1);
+      border-color: var(--gold);
+    }
     .vessel-card-no-photo {
       display: flex;
       align-items: center;
@@ -570,7 +621,8 @@
       /* Fleet */
       #fleet { padding: 40px 16px 60px; }
       .fleet-grid { grid-template-columns: 1fr; gap: 2px; }
-      .vessel-card { aspect-ratio: 16/10; }
+      .vessel-card { aspect-ratio: 16/10; min-height: 280px; }
+      .vessel-card-name { font-size: 1.3rem; }
       .vessel-card-cta { opacity: 1; }
 
       /* Contact */
@@ -813,7 +865,8 @@ function buildCard(row) {
   const rawLen = isStatic ? row.len : (row['Length (ft)'] ? row['Length (ft)'] + '\'' : '');
   const rawCap = isStatic ? row.capacity : (row['Guest Capacity'] ? row['Guest Capacity'] + ' guests' : '');
   const specsArr = [rawLen, rawCap].filter(hasValue);
-  const specs = specsArr.join(' · ');
+  const specsChips = specsArr.map(s => `<span class="spec-chip">${s}</span>`).join('');
+  const specs = specsChips;
 
   const priceNote = isStatic ? '' : (row['Price Note'] || '').toLowerCase();
   const isPOR = isStatic
@@ -860,7 +913,7 @@ function buildCard(row) {
       <div class="vessel-card-category">${category}</div>
       <div class="vessel-card-name">${name}</div>
       ${specs ? `<div class="vessel-card-specs">${specs}</div>` : ''}
-      <div class="vessel-card-price">${price}</div>
+      <div class="vessel-card-price">${isPOR ? 'Price on Request' : (price ? '<span style="font-family:Montserrat,sans-serif;font-style:normal;font-size:0.6rem;font-weight:600;letter-spacing:0.14em;color:rgba(184,151,90,0.7);margin-right:5px;text-transform:uppercase;">From</span>' + price : '')}</div>
       <span class="vessel-card-cta">View Details →</span>
     </div>`;
 
