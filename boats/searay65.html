@@ -75,26 +75,6 @@
     }
     .boat-subtitle { font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(232,224,208,0.6); }
 
-    /* SPECS ROW */
-    .specs-row {
-      display: flex; justify-content: center;
-      border-bottom: 1px solid var(--border);
-      background: var(--dark); flex-wrap: wrap;
-    }
-    .spec-item {
-      flex: 1; min-width: 120px; max-width: 180px;
-      text-align: center; padding: 24px 16px;
-      border-right: 1px solid var(--border);
-    }
-    .spec-item:last-child { border-right: none; }
-    .spec-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 400; color: var(--gold); line-height: 1;
-    }
-    .spec-label {
-      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); margin-top: 5px;
-    }
 
     /* CONTENT AREA */
     .boat-content {
@@ -201,7 +181,7 @@
     .btn-inquire:hover { border-color: var(--gold); color: var(--gold); }
 
     /* GALLERY */
-    .gallery-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 80px; }
+    .gallery-section { max-width: 1200px; margin: 0 auto; padding: 40px 48px 80px; }
     .gallery-eyebrow {
       font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 12px; font-weight: 600;
@@ -299,24 +279,6 @@
       .boat-title { font-size: clamp(1.8rem, 8vw, 3rem); }
       .boat-subtitle { font-size: 0.72rem; }
 
-      /* Specs row — scroll with affordance */
-      .specs-row {
-        justify-content: flex-start;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        position: relative;
-      }
-      .specs-row::after {
-        content: '';
-        position: absolute;
-        right: 0; top: 0; bottom: 0;
-        width: 48px;
-        background: linear-gradient(to right, transparent, var(--dark));
-        pointer-events: none;
-      }
-      .spec-item { min-width: 90px; padding: 18px 12px; flex-shrink: 0; }
 
       /* Content */
       .boat-content { padding: 36px 20px; }
@@ -338,7 +300,7 @@
       }
 
       /* Gallery — horizontal strip on mobile */
-      .gallery-section { padding: 0 0 60px; }
+      .gallery-section { padding: 40px 0 60px; }
       .gallery-eyebrow, .gallery-heading { padding: 0 20px; }
       .gallery-grid {
         display: flex;
@@ -423,13 +385,19 @@
   </div>
 </div>
 
-<!-- SPECS ROW -->
-<div class="specs-row">
-  <div class="spec-item"><div class="spec-value">65'</div><div class="spec-label">Length</div></div>
   <div class="spec-item"><div class="spec-value">13</div><div class="spec-label">Guests</div></div>
   <div class="spec-item"><div class="spec-value">3</div><div class="spec-label">Cabins</div></div>
   <div class="spec-item"><div class="spec-value">2</div><div class="spec-label">Baths</div></div>
   <div class="spec-item"><div class="spec-value">Haulo</div><div class="spec-label">Home Port</div></div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <p class="gallery-eyebrow">Photo Gallery</p>
+  <h2 class="gallery-heading">The Vessel</h2>
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- populated by JS -->
+  </div>
 </div>
 
 <!-- CONTENT + SIDEBAR -->
@@ -481,15 +449,6 @@
     </div>
     <a href="tel:+13055550000" class="btn-book">Book This Yacht</a>
     <a href="https://wa.me/13055550000" class="btn-inquire" target="_blank">WhatsApp Inquiry</a>
-  </div>
-</div>
-
-<!-- GALLERY -->
-<div class="gallery-section">
-  <p class="gallery-eyebrow">Photo Gallery</p>
-  <h2 class="gallery-heading">The Vessel</h2>
-  <div class="gallery-grid" id="gallery-grid">
-    <!-- populated by JS -->
   </div>
 </div>
 
