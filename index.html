@@ -104,27 +104,41 @@
     .mobile-nav {
       display: none;
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       z-index: 99;
-      background: rgba(8,9,12,0.98);
+      background: rgba(8,9,12,0.96);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 36px;
-      padding-top: 80px;
-      padding-bottom: 40px;
-      min-height: 100vh;
+      gap: 0;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
     }
-    .mobile-nav.open { display: flex; }
+    .mobile-nav.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
     .mobile-nav a {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       color: var(--text);
       text-decoration: none;
       letter-spacing: 0.06em;
       transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 80px;
+      text-align: center;
     }
-    .mobile-nav a:hover { color: var(--gold); }
+    .mobile-nav a:hover, .mobile-nav a:active { color: var(--gold); }
 
     /* ── HERO CAROUSEL ── */
     .hero {
@@ -132,6 +146,29 @@
       height: 55vh;
       min-height: 380px;
       overflow: hidden;
+    }
+    /* Scroll cue chevron */
+    .hero-scroll-cue {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 10;
+      animation: scrollCueBounce 2s ease-in-out infinite;
+      opacity: 0.7;
+    }
+    .hero-scroll-cue svg {
+      width: 20px; height: 20px;
+      stroke: rgba(232,224,208,0.6);
+      fill: none;
+    }
+    @keyframes scrollCueBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(5px); }
     }
     .hero-slide {
       position: absolute;
@@ -617,28 +654,54 @@
       .nav-menu-btn { display: flex; }
 
       /* Hero */
-      .hero { height: 40vh; min-height: 280px; }
+      .hero { height: 55vh; min-height: 320px; }
       .hero-title { font-size: clamp(1.6rem, 7vw, 2.4rem); }
-      .hero-tagline { font-size: 0.6rem; letter-spacing: 0.2em; }
+      .hero-tagline { font-size: 0.6rem; letter-spacing: 0.15em; }
 
-      /* Stats */
+      /* Stats — 2×2 grid with correct borders */
       .stats-bar { flex-wrap: wrap; }
       .stat-item { min-width: 50%; max-width: none; border-right: none; border-bottom: 1px solid var(--border); }
       .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-item:nth-last-child(-n+2):not(.stat-item:nth-child(odd) ~ .stat-item) { border-bottom: none; }
       .stat-item:last-child { border-bottom: none; }
+      /* Fix: last row (3rd and 4th items) no bottom border */
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
 
       /* Fleet */
       #fleet { padding: 40px 16px 60px; }
-      .fleet-grid { grid-template-columns: 1fr; gap: 2px; }
-      .vessel-card { aspect-ratio: 16/10; min-height: 280px; }
-      .vessel-card-name { font-size: 1.3rem; }
+      .fleet-grid { grid-template-columns: 1fr; gap: 12px; }
+      .vessel-card {
+        aspect-ratio: 3/2;
+        min-height: 260px;
+        border-radius: 12px;
+        border-color: rgba(184,151,90,0.15);
+      }
+      .vessel-card-name {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
+      }
       .vessel-card-cta { opacity: 1; }
+      /* Touch press state */
+      .vessel-card:active { transform: scale(0.98); transition: transform 0.1s; }
+      /* Second image visible on mobile via touch-active class */
+      .vessel-card.touch-active .vessel-card-img.first { opacity: 0; }
+      .vessel-card.touch-active .vessel-card-img.second { opacity: 1; }
+
+      /* Filter bar — proper touch targets */
+      .filter-btn { min-height: 44px; }
 
       /* Contact */
       #contact { padding: 60px 20px; }
       .contact-buttons { flex-direction: column; align-items: center; }
       .contact-buttons .btn-primary,
-      .contact-buttons .btn-secondary { width: 100%; max-width: 320px; text-align: center; }
+      .contact-buttons .btn-secondary {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
       /* Footer */
       footer { padding: 32px 20px; }
@@ -648,6 +711,7 @@
 
     @media (max-width: 480px) {
       .hero-title { font-size: 1.6rem; }
+      .vessel-card { border-radius: 10px; }
     }
   </style>
 </head>
@@ -684,6 +748,9 @@
     <h1 class="hero-title">Luxury On The Water</h1>
   </div>
   <div class="hero-dots" id="hero-dots"></div>
+  <div class="hero-scroll-cue" id="hero-scroll-cue">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
 </section>
 
 <!-- STATS BAR -->
@@ -824,6 +891,9 @@ setInterval(() => goToSlide((currentSlide + 1) % slides.length), 5000);
 // Nav scroll effect
 window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+  // Hide scroll cue once user scrolls
+  const cue = document.getElementById('hero-scroll-cue');
+  if (cue) cue.style.opacity = window.scrollY > 20 ? '0' : '0.7';
 });
 
 // Mobile menu
@@ -833,6 +903,37 @@ document.getElementById('menu-btn').addEventListener('click', () => {
 function closeMobileNav() {
   document.getElementById('mobile-nav').classList.remove('open');
 }
+// Close mobile nav on outside tap
+document.getElementById('mobile-nav').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeMobileNav();
+});
+
+// Hero touch swipe
+(function() {
+  const hero = document.getElementById('hero');
+  let touchStartX = 0, touchStartY = 0;
+  hero.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  hero.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) goToSlide((currentSlide + 1) % slides.length);
+      else goToSlide((currentSlide - 1 + slides.length) % slides.length);
+    }
+  }, { passive: true });
+})();
+
+// Vessel card touch: toggle second image on mobile
+document.addEventListener('touchstart', e => {
+  const card = e.target.closest('.vessel-card');
+  if (!card) return;
+  // Remove from all others
+  document.querySelectorAll('.vessel-card.touch-active').forEach(c => { if (c !== card) c.classList.remove('touch-active'); });
+  card.classList.toggle('touch-active');
+}, { passive: true });
 
 // ── CSV PARSER ──
 function parseCSV(text) {
