@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretti | Yacht Boss Miami</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+  <meta name="description" content="Ferretti — luxury yacht charter in Miami. Book with Yacht Boss Miami.">
+  <meta property="og:title" content="Ferretti | Yacht Boss Miami">
+  <meta property="og:description" content="Charter the Ferretti in Miami. Book with Yacht Boss Miami.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #B8975A;
+      --gold-light: #D4B078;
+      --black: #08090C;
+      --dark: #0F1015;
+      --card-bg: #12141A;
+      --border: rgba(184,151,90,0.2);
+      --text: #E8E0D0;
+      --muted: #8A8070;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 400; overflow-x: hidden; word-break: break-word; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(8,9,12,0.97);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; color: #fff;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; line-height: 1;
+    }
+    .nav-back {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    .nav-back svg { width: 14px; height: 14px; }
+    .nav-fleet-link {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+    }
+
+    /* HERO */
+    .boat-hero {
+      position: relative; height: 70vh; min-height: 480px;
+      margin-top: 65px; overflow: hidden;
+    }
+    .boat-hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .boat-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(8,9,12,0.1) 0%, rgba(8,9,12,0.65) 75%, rgba(8,9,12,1) 100%);
+    }
+    .boat-hero-info { position: absolute; bottom: 0; left: 48px; right: 48px; padding-bottom: 44px; }
+    .boat-category-tag {
+      display: inline-block; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold); padding: 5px 14px; margin-bottom: 16px;
+    }
+    .boat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 500; color: #fff; line-height: 1.0; margin-bottom: 10px;
+    }
+    .boat-subtitle { font-size: 0.8rem; letter-spacing: 0.08em; color: rgba(232,224,208,0.6); }
+
+
+    /* CONTENT AREA */
+    .boat-content {
+      max-width: 1200px; margin: 0 auto; padding: 60px 48px;
+      display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: start;
+    }
+
+    /* TABS */
+    .tab-buttons {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border); margin-bottom: 32px;
+    }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--muted); font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+      padding: 12px 24px; cursor: pointer; transition: all 0.2s; margin-bottom: -1px;
+    }
+    .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .tab-btn:hover { color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Description */
+    .desc-text { font-size: 0.9rem; line-height: 1.85; color: rgba(232,224,208,0.85); }
+    .desc-text p + p { margin-top: 16px; }
+    .features-heading {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin: 28px 0 14px; font-weight: 600;
+    }
+    .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .feature-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.75rem; letter-spacing: 0.04em; font-weight: 600;
+      color: rgba(232,224,208,0.75);
+    }
+    .feature-item::before {
+      content: ''; display: block; width: 4px; height: 4px;
+      background: var(--gold); border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* Pricing */
+    .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-bottom: 24px; }
+    .pricing-card { background: var(--card-bg); padding: 28px 20px; text-align: center; }
+    .pricing-duration {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px; font-weight: 600;
+    }
+    .pricing-prefix {
+      font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .pricing-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 400; color: var(--gold); line-height: 1;
+    }
+    .pricing-note { font-size: 0.65rem; color: var(--muted); margin-top: 20px; line-height: 1.6; }
+    .pricing-por { text-align: center; padding: 48px 20px; }
+    .pricing-por .por-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; color: var(--gold); margin-bottom: 12px;
+    }
+    .pricing-por p { font-size: 0.8rem; color: var(--muted); margin-bottom: 24px; }
+
+    /* Availability */
+    .availability-section { text-align: center; padding: 32px 0; }
+    .availability-section p {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto;
+    }
+
+    /* SIDEBAR */
+    .sidebar-card {
+      background: #0D0E12; border: 1px solid var(--border);
+      padding: 28px 24px; margin-bottom: 20px;
+    }
+    .sidebar-card-title {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; font-weight: 600;
+    }
+    .sidebar-spec-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 12px;
+      font-size: 0.75rem;
+    }
+    .sidebar-spec-row:nth-child(even) { background: rgba(255,255,255,0.03); }
+    .sidebar-spec-label { color: var(--gold); letter-spacing: 0.06em; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; }
+    .sidebar-spec-val { color: #fff; font-weight: 500; text-align: right; }
+    .btn-book {
+      display: block; width: 100%; text-align: center;
+      background: var(--gold); color: var(--black); border: none; padding: 16px 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background 0.2s; margin-bottom: 10px;
+    }
+    .btn-book:hover { background: var(--gold-light); }
+    .btn-inquire {
+      display: block; width: 100%; text-align: center;
+      background: transparent; color: var(--text); border: 1px solid var(--border); padding: 14px 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-inquire:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* GALLERY */
+    .gallery-section { max-width: 1200px; margin: 0 auto; padding: 40px 48px 80px; }
+    .gallery-eyebrow {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; font-weight: 600;
+    }
+    .gallery-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; color: #fff; margin-bottom: 28px;
+    }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+    .gallery-grid .g-wide { grid-column: span 2; }
+    .gallery-item { aspect-ratio: 4/3; overflow: hidden; cursor: pointer; position: relative; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(8,9,12,0.97); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img { max-width: 90vw; max-height: 85vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      background: none; border: none; color: var(--text);
+      font-size: 2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; line-height: 1;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(184,151,90,0.15); border: 1px solid var(--border);
+      color: var(--gold); font-size: 1.5rem; padding: 16px 20px;
+      cursor: pointer; transition: background 0.2s; line-height: 1;
+    }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(184,151,90,0.3); }
+    .lightbox-counter {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-size: 0.7rem; letter-spacing: 0.15em; color: var(--muted);
+    }
+
+    /* FOOTER */
+    footer { padding: 40px 48px; border-top: 1px solid var(--border); background: var(--black); }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      flex-wrap: wrap; gap: 32px;
+    }
+    .footer-brand .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; color: #fff;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      display: block; margin-bottom: 8px; text-decoration: none;
+    }
+    .footer-tagline { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+    .footer-contact { display: flex; flex-direction: column; gap: 8px; }
+    .footer-contact a {
+      font-size: 0.72rem; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 20px; align-items: center; }
+    .footer-social a {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1200px; margin: 24px auto 0; padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-copy { font-size: 0.6rem; color: var(--muted); letter-spacing: 0.08em; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .boat-content { grid-template-columns: 1fr; gap: 40px; }
+      .boat-sidebar { order: -1; }
+      .sidebar-card { max-width: 500px; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-grid .g-wide { grid-column: span 1; }
+    }
+    @media (max-width: 768px) {
+      /* Nav */
+      nav { padding: 16px 20px; }
+
+      /* Hero — more drama on mobile */
+      .boat-hero { height: 60vh; min-height: 360px; }
+      .boat-hero-info { left: 20px; right: 20px; padding-bottom: 32px; }
+      .boat-category-tag { margin-bottom: 10px; }
+      /* Gradient starts lower so more photo shows */
+      .boat-hero-overlay {
+        background: linear-gradient(to bottom, rgba(8,9,12,0.05) 0%, rgba(8,9,12,0.5) 65%, rgba(8,9,12,1) 100%);
+      }
+      .boat-title { font-size: clamp(1.8rem, 8vw, 3rem); }
+      .boat-subtitle { font-size: 0.72rem; }
+
+
+      /* Content */
+      .boat-content { padding: 36px 20px; }
+      .features-list { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+
+      /* Buttons — full-width, proper height */
+      .btn-book { min-height: 52px; display: flex; align-items: center; justify-content: center; }
+      .btn-inquire { min-height: 48px; display: flex; align-items: center; justify-content: center; }
+
+      /* Back button — bigger tap target */
+      .nav-back {
+        font-size: 0.72rem;
+        min-height: 44px;
+        padding: 0 12px;
+        background: rgba(184,151,90,0.08);
+        border: 1px solid rgba(184,151,90,0.2);
+        border-radius: 4px;
+      }
+
+      /* Gallery — horizontal strip on mobile */
+      .gallery-section { padding: 40px 0 60px; }
+      .gallery-eyebrow, .gallery-heading { padding: 0 20px; }
+      .gallery-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 6px;
+        padding: 0 20px 8px;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        grid-template-columns: unset;
+      }
+      .gallery-grid::-webkit-scrollbar { display: none; }
+      .gallery-item {
+        flex: 0 0 100px;
+        width: 100px;
+        height: 100px;
+        aspect-ratio: 1;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .gallery-item.g-wide { grid-column: unset; }
+      /* Active tap feedback */
+      .gallery-item:active img { transform: scale(0.96); transition: transform 0.1s; }
+
+      /* Lightbox — bottom pill nav on mobile */
+      .lightbox-prev, .lightbox-next {
+        position: fixed;
+        bottom: 32px;
+        top: auto;
+        transform: none;
+        padding: 14px 28px;
+        font-size: 1.4rem;
+        border-radius: 50px;
+      }
+      .lightbox-prev { left: 50%; transform: translateX(calc(-100% - 8px)); }
+      .lightbox-next { left: 50%; transform: translateX(8px); }
+      .lightbox-img { max-width: 100vw; max-height: 80vh; }
+      /* Photo counter top-right */
+      .lightbox-counter {
+        bottom: auto;
+        top: 24px;
+        right: 80px;
+        left: auto;
+        transform: none;
+        font-size: 0.75rem;
+        background: rgba(8,9,12,0.7);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+
+      /* Footer */
+      footer { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .boat-title { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+      .tab-btn { padding: 12px 12px; font-size: 0.58rem; }
+    }
+</style>
+  <meta property="og:image" content="https://shanroseg.github.io/yachtbossmiami/images/80ft_ferretti/ferretti-01.jpg">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Yacht Boss Miami</a>
+  <a href="../index.html#fleet" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Fleet
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="boat-hero">
+  <img class="boat-hero-img" src="../images/80ft_ferretti/ferretti-01.jpg" alt="Ferretti" id="hero-img">
+  <div class="boat-hero-overlay"></div>
+  <div class="boat-hero-info">
+    <div class="boat-category-tag">Superyacht</div>
+    <h1 class="boat-title">Ferretti</h1>
+    <p class="boat-subtitle">80' · Ferretti · 2024</p>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-section">
+  <p class="gallery-eyebrow">Photo Gallery</p>
+  <h2 class="gallery-heading">The Vessel</h2>
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<!-- CONTENT + SIDEBAR -->
+<div class="boat-content">
+  <div class="boat-main">
+    <div class="tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="description">Description</button>
+        <button class="tab-btn" data-tab="pricing">Specs & Pricing</button>
+        <button class="tab-btn" data-tab="availability">Availability</button>
+      </div>
+
+      <!-- Description -->
+      <div class="tab-panel active" id="tab-description">
+        <div class="desc-text">
+          <p>This 2024 Ferretti 80 is one of the newest yachts in the Miami charter fleet. Sleek Italian lines, a hardtop flybridge with lounge seating, a bow sunpad and a wide aft deck with direct access to the swim platform make it as comfortable as it is striking. Cruise past the downtown skyline and through Biscayne Bay with a professional crew taking care of every detail.</p>
+        </div>
+        <div class="features-list" id="features-list">
+          <!-- populated by JS or hardcoded -->
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="tab-panel" id="tab-pricing">
+        <div class="pricing-grid" id="pricing-grid">
+          <!-- populated below -->
+        </div>
+        <p class="pricing-note">Gratuity is not included in charter rates. Standard gratuity of 15–20% is recommended. Fuel, captain, and mate are included unless otherwise noted.</p>
+      </div>
+
+      <!-- Availability -->
+      <div class="tab-panel" id="tab-availability">
+        <div class="availability-section">
+          <p>For real-time availability and to reserve your date, contact our charter concierge. We'll confirm within 24 hours and handle all logistics from departure to return.</p>
+          <a href="tel:+13055550000" class="btn-book" style="max-width:280px;margin:0 auto 10px;">Call to Book</a>
+          <a href="https://wa.me/13055550000" class="btn-inquire" style="max-width:280px;margin:0 auto;" target="_blank">WhatsApp Inquiry</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="boat-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">Quick Specs</div>
+      <div id="sidebar-specs">
+        <!-- populated by JS or hardcoded -->
+      </div>
+    </div>
+    <a href="tel:+13055550000" class="btn-book">Book This Yacht</a>
+    <a href="https://wa.me/13055550000" class="btn-inquire" target="_blank">WhatsApp Inquiry</a>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">×</button>
+  <button class="lightbox-prev" id="lb-prev">‹</button>
+  <img class="lightbox-img" id="lb-img" src="" alt="">
+  <button class="lightbox-next" id="lb-next">›</button>
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<script>
+
+// ── TABS ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── LIGHTBOX ──
+const galleryImages = [];
+let lbIndex = 0;
+
+function openLightbox(index) {
+  lbIndex = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function updateLightbox() {
+  document.getElementById('lb-img').src = galleryImages[lbIndex];
+  document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + galleryImages.length;
+}
+document.getElementById('lb-close').addEventListener('click', () => {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.getElementById('lb-prev').addEventListener('click', () => {
+  lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length;
+  updateLightbox();
+});
+document.getElementById('lb-next').addEventListener('click', () => {
+  lbIndex = (lbIndex + 1) % galleryImages.length;
+  updateLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % galleryImages.length; updateLightbox(); }
+  if (e.key === 'Escape')     { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+});
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === e.currentTarget) { e.currentTarget.classList.remove('open'); document.body.style.overflow = ''; }
+});
+// Lightbox touch swipe
+(function() {
+  const lb = document.getElementById('lightbox');
+  let startX = 0, startY = 0;
+  lb.addEventListener('touchstart', e => {
+    startX = e.changedTouches[0].screenX;
+    startY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].screenX - startX;
+    const dy = e.changedTouches[0].screenY - startY;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) { lbIndex = (lbIndex + 1) % galleryImages.length; updateLightbox(); }
+      else { lbIndex = (lbIndex - 1 + galleryImages.length) % galleryImages.length; updateLightbox(); }
+    }
+  }, { passive: true });
+})();
+
+// ── BUILDER FUNCTIONS ──
+function buildGallery(images, folder) {
+  const grid = document.getElementById('gallery-grid');
+  images.forEach((file, i) => {
+    const src = `../images/${folder}/${file}`;
+    galleryImages.push(src);
+    const item = document.createElement('div');
+    item.className = 'gallery-item' + (i === 0 ? ' g-wide' : '');
+    const img = document.createElement('img');
+    img.src = src; img.loading = 'lazy';
+    img.alt = document.querySelector('.boat-title').textContent.trim() + ' — photo ' + (i + 1);
+    item.appendChild(img);
+    item.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(item);
+  });
+}
+
+function buildPricing(rates, isPOR) {
+  const container = document.getElementById('pricing-grid');
+  if (isPOR) {
+    container.outerHTML = `<div class="pricing-por"><p class="por-text">Price on Request</p><p>Pricing for this vessel is available upon request based on dates, guest count, and itinerary.</p><a href="tel:+13055550000" class="btn-book" style="max-width:220px;margin:0 auto;">Request a Quote</a></div>`;
+    return;
+  }
+  const durations = [['4 Hours', rates['4hr']], ['6 Hours', rates['6hr']], ['8 Hours', rates['8hr']], ['Weekly', rates['week']]];
+  durations.forEach(([label, amount]) => {
+    if (!amount) return;
+    const card = document.createElement('div');
+    card.className = 'pricing-card';
+    card.innerHTML = `<div class="pricing-duration">${label}</div><div class="pricing-prefix">Starting at</div><div class="pricing-amount">${amount}</div>`;
+    container.appendChild(card);
+  });
+}
+
+function buildSidebarSpecs(specs) {
+  const container = document.getElementById('sidebar-specs');
+  const rows = specs.filter(([_, val]) => val && val !== '—' && val !== '' && val !== '0');
+  if (rows.length === 0) {
+    // Hide entire sidebar specs card if no data
+    const card = container.closest('.sidebar-card');
+    if (card) card.style.display = 'none';
+    return;
+  }
+  rows.forEach(([label, val]) => {
+    const row = document.createElement('div');
+    row.className = 'sidebar-spec-row';
+    row.innerHTML = `<span class="sidebar-spec-label">${label}</span><span class="sidebar-spec-val">${val}</span>`;
+    container.appendChild(row);
+  });
+}
+
+function buildFeatures(features) {
+  const container = document.getElementById('features-list');
+  if (!features || features.length === 0) {
+    container.style.display = 'none';
+    const h = container.previousElementSibling;
+    if (h && h.classList.contains('features-heading')) h.style.display = 'none';
+    return;
+  }
+  features.forEach(f => {
+    const item = document.createElement('div');
+    item.className = 'feature-item';
+    item.textContent = f;
+    container.appendChild(item);
+  });
+}
+
+</script>
+<script>
+buildGallery(['ferretti-01.jpg', 'ferretti-02.jpg', 'ferretti-03.jpg', 'ferretti-04.jpg', 'ferretti-05.jpg', 'ferretti-06.jpg', 'ferretti-07.jpg', 'ferretti-08.jpg', 'ferretti-09.jpg', 'ferretti-10.jpg', 'ferretti-11.jpg', 'ferretti-12.jpg', 'ferretti-13.jpg', 'ferretti-14.jpg', 'ferretti-15.jpg', 'ferretti-16.jpg', 'ferretti-17.jpg', 'ferretti-18.jpg'], '80ft_ferretti');
+buildFeatures(['2024 Model', 'Hardtop Flybridge', 'Bow Sunpad & Lounge', 'Aft Deck Dining', 'Swim Platform', 'Professional Crew']);
+buildSidebarSpecs([['Type', 'Ferretti 80'], ['Year', '2024'], ['Length', "80'"]]);
+buildPricing({'4hr': '$5,300'}, false);
+</script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../index.html" class="footer-logo">Yacht Boss Miami</a>
+      <span class="footer-tagline">Miami's Premier Yacht Charter Fleet</span>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:+13055550000">(305) 000-0000</a>
+      <a href="mailto:info@yachtbossmiami.com">info@yachtbossmiami.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Yacht Boss Miami. All rights reserved.</div>
+    <div class="footer-copy">Miami Beach, FL</div>
+  </div>
+</footer>
+
+</body>
+</html>
