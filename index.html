@@ -853,6 +853,11 @@ const IMAGE_FOLDERS = {
   'daydreamin':     '85ft_azimut_daydreamin',
   'ferretti':       '80ft_ferretti',
   'stamosbien':     '110ft_maiora_stamosbien',
+  'azimut64':       '64ft_azimut',
+  'azimut105':      '105ft_azimut_sv',
+  'princess88':     '88ft_princess',
+  'sunseeker80':    '80ft_sunseeker',
+  'sunseeker96':    '96ft_sunseeker28m',
 };
 
 const IMAGE_FILES = {
@@ -889,6 +894,11 @@ const IMAGE_FILES = {
   'daydreamin':     ['daydreamin-01.jpg',  'daydreamin-19.jpg'],
   'ferretti':       ['ferretti-01.jpg',    'ferretti-02.jpg'],
   'stamosbien':     ['stamosbien-01.jpg',  'stamosbien-20.jpg'],
+  'azimut64':       ['azimut64-01.jpg',    'azimut64-21.jpg'],
+  'azimut105':      ['azimut105-01.jpg',   'azimut105-24.jpg'],
+  'princess88':     ['princess88-01.jpg',  'princess88-25.jpg'],
+  'sunseeker80':    ['sunseeker80-01.jpg', 'sunseeker80-27.jpg'],
+  'sunseeker96':    ['sunseeker96-01.jpg', 'sunseeker96-21.jpg'],
 };
 
 // ── HERO CAROUSEL ──
@@ -1180,14 +1190,14 @@ function renderStaticFallback() {
     { name: 'Azure',                 slug: 'azure',       category: 'Superyacht',  len: '84',  type: 'Azimut',               capacity: '',           price: 'Starting at $3,700 / 4 hrs' },
     { name: 'Playhouse',             slug: 'playhouse',  category: 'Price on Request', len: '70', type: 'Sunseeker Manhattan', capacity: '',        price: 'Price on Request' },
     { name: 'San Lorenzo',           slug: 'sanlorenzo',  category: 'Superyacht',  len: '97',  type: 'San Lorenzo',          capacity: '',           price: 'Starting at $6,500 / 4 hrs' },
-    { name: 'Azimut Fly',            slug: '',            category: 'Superyacht',  len: '105', type: 'Azimut',               capacity: '',           price: 'Starting at $6,000 / 4 hrs' },
-    { name: 'Sunseeker 28M',         slug: '',            category: 'Superyacht',  len: '96',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $5,500 / 4 hrs' },
-    { name: 'Princess',              slug: '',            category: 'Superyacht',  len: '88',  type: 'Princess',             capacity: '',           price: 'Starting at $4,000 / 4 hrs' },
-    { name: 'Sunseeker',             slug: '',            category: 'Superyacht',  len: '80',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $3,600 / 4 hrs' },
+    { name: 'Azimut Fly',            slug: 'azimut105',   category: 'Superyacht',  len: '105', type: 'Azimut',               capacity: '',           price: 'Starting at $6,000 / 4 hrs' },
+    { name: 'Sunseeker 28M',         slug: 'sunseeker96', category: 'Superyacht',  len: '96',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $5,500 / 4 hrs' },
+    { name: 'Princess',              slug: 'princess88',  category: 'Superyacht',  len: '88',  type: 'Princess',             capacity: '',           price: 'Starting at $4,000 / 4 hrs' },
+    { name: 'Sunseeker',             slug: 'sunseeker80', category: 'Superyacht',  len: '80',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $3,600 / 4 hrs' },
     { name: 'Sunseeker',             slug: 'sunseeker76', category: 'Superyacht',  len: '76',  type: 'Sunseeker',            capacity: '',           price: 'Starting at $4,400 / 4 hrs' },
     { name: 'Azimut S7',             slug: 'azimuts7',    category: 'Flybridge',   len: '72',  type: 'Azimut',               capacity: '',           price: 'Starting at $4,200 / 4 hrs' },
     { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '65',  type: 'Azimut',               capacity: '',           price: 'Starting at $1,900 / 4 hrs' },
-    { name: 'Azimut',                slug: '',            category: 'Flybridge',   len: '64',  type: 'Azimut',               capacity: '',           price: 'Starting at $3,100 / 4 hrs' },
+    { name: 'Azimut',                slug: 'azimut64',    category: 'Flybridge',   len: '64',  type: 'Azimut',               capacity: '',           price: 'Starting at $3,100 / 4 hrs' },
     { name: 'Galeon Fly',            slug: 'galeon',      category: 'Flybridge',   len: '53',  type: 'Galeon',               capacity: '',           price: 'Starting at $2,800 / 4 hrs' },
     { name: 'Wally',                 slug: 'wally',category: 'Price on Request', len: '85', type: 'Wally',            capacity: '',           price: 'Price on Request' },
     { name: 'Ferretti',              slug: 'ferretti',            category: 'Superyacht',  len: '80',  type: 'Ferretti',             capacity: '',           price: 'Starting at $5,300 / 4 hrs' },
